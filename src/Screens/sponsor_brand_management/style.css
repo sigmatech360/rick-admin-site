@@ -1,0 +1,65 @@
+.stats {
+    margin-bottom: 1rem;
+    border-right: 2px solid #fff0;
+}
+
+
+.customButton{
+    background-color: #348F99!important;
+    border: none;
+    color: white;
+    
+}
+
+.avatarIcon {
+    width: 60px;
+    height: 60px;
+}
+
+.productImage img {
+    width: 100%;
+    object-fit: cover;
+    height: 530px;
+}
+
+.font-weight-bold {
+    font-weight: bold;
+}
+
+.accordion-button:not(.collapsed) {
+    color: #ffffff !important;
+    background-color: #5a3473 !important;
+    box-shadow: none !important;
+}
+
+
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(100) !important;
+}
+
+@media screen and (max-width: 1200px) and (min-width: 768px) {
+    .stats, .stats:not(:last-child) {
+        border-color: #fff0;
+    }
+
+    .stats:nth-child(odd) {
+        border-color: #000;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .stats, .stats:not(:last-child), .stats:nth-child(odd) {
+        border-color: #fff0;
+    }
+}
+
+
+
+
+.img-fluid {
+    max-width: 100%;
+    height: auto;
+    width: 110px;
+}
+
+
