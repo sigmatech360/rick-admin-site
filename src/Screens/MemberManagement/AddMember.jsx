@@ -213,14 +213,14 @@ export const AddMember = () => {
                               onChange={handlecheck}
                               className="me-1"
                             />
-                            Tam member
+                            Team member
                           </label>
                           <label>
                             <input
                               type="radio"
                               name="member_type"
-                              value="0" // No = 0
-                              checked={formData?.member_type === 0}
+                              value="2" // No = 0
+                              checked={formData?.member_type === 2}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -228,6 +228,8 @@ export const AddMember = () => {
                           </label>
                         </div>
                       </div>
+
+                      
                       <div className="checkBox col-md-6 mb-4">
                         <label className="fw-semibold">Show in Mobile</label>
                         <div>
