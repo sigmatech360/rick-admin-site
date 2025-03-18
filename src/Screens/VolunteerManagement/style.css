@@ -45,7 +45,7 @@ body {
 }
 
 .btn-theme {
-    background-color: #348F99 !important;
+    background-color: var(--primaryColor) !important;
 }
 
 .btn-red {

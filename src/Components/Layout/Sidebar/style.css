@@ -37,7 +37,7 @@
 .sideLink:hover,
 .sideLink.active {
     color: #fff;
-    background: #348F99;
+    background: var(--primaryColor);
 }
 
 .sideIcon {

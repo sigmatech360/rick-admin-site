@@ -70,7 +70,7 @@
     font-size: 18px;
 }
 .paginationBar ul li button.active{
-    background-color: #348F99;
+    background-color: var(--primaryColor);
 }
 .paginationBar ul li button:disabled{
     background-color: gray;
