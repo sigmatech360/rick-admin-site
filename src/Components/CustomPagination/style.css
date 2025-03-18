@@ -66,9 +66,16 @@
     color: #fff;
     padding: 7px 16px;
     border: 1px solid var(--whiteColor);
+    border-radius: 5px;
     font-size: 18px;
 }
+.paginationBar ul li button.active{
+    background-color: #348F99;
+}
+.paginationBar ul li button:disabled{
+    background-color: gray;
+}
 
-.paginationBar ul li button:hover {
+.paginationBar ul li button:not(.active):not(:disabled):hover {
     background-color: var(--grayColor);
 }

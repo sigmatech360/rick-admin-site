@@ -38,12 +38,6 @@ export const SponsoredProgram = () => {
     setHandledeleteid(id) 
   }
 
-
-
-
-
-  console.log("dataaaaaaaaa", data)
-
   const navigate = useNavigate();
 
 
@@ -96,9 +90,13 @@ export const SponsoredProgram = () => {
 
       .then(response => response.json())
       .then((data) => {
-        console.log(data?.data)
+        // console.log(data?.data)
         document.querySelector('.loaderBox').classList.add("d-none");
         setData(data?.data);
+        // let test = Math.min(itemsPerPage, data.data.length)
+        // console.log('items per page : ', test);
+        
+        setItemsPerPage(prev => Math.min(prev, data.data.length));
       })
       .catch((error) => {
         document.querySelector('.loaderBox').classList.add("d-none");
@@ -136,6 +134,7 @@ export const SponsoredProgram = () => {
       title: "Action",
     },
   ];
+
   const Deleteproject = ( ) => {
     const LogoutData = localStorage.getItem("login");
     document.querySelector(".loaderBox").classList.remove("d-none");
@@ -149,7 +148,6 @@ export const SponsoredProgram = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data);
         document.querySelector(".loaderBox").classList.add("d-none");
         projectlist();
       })
