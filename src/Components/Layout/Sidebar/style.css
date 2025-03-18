@@ -20,6 +20,7 @@
 .sideLink {
     font-size: 14px;
     font-weight: 600;
+    white-space: nowrap;
     text-decoration: none;
     color: #fff;
     display: block;
@@ -27,6 +28,8 @@
     background: #fff0;
     position: relative;
     transition: 0.3s linear;
+    max-width: 100%;
+    overflow: hidden;
 }
 
 
