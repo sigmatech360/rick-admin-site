@@ -241,7 +241,7 @@ export const TopVolunteerManagement = () => {
                   </div> */}
                   <div className="col-md-3   mb-2">
 
-                    <CustomInput type="text" placeholder="Search Event..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                    <CustomInput type="text" placeholder="Search Volunteers..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
                   </div>
 
                 </div>
