@@ -17,6 +17,7 @@ import Select from 'react-select'
 import { SelectBox } from "../../Components/CustomSelect";
 import placeholderimage from '../../Assets/images/placeholderimage.png'
 import "./style.css";
+import { formatDate } from "../../utils/dateUtils";
 
 export const VolunteerManagement = () => {
   const base_url = 'https://custom.mystagingserver.site/Tim-WDLLC/public/'
@@ -400,7 +401,7 @@ export const VolunteerManagement = () => {
                   </div>
                   <div className="col-md-3   mb-2">
 
-                    <CustomInput type="text" placeholder="Search Event..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                    <CustomInput type="text" placeholder="Search Volunteer..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
                   </div>
 
                 </div>
@@ -427,7 +428,7 @@ export const VolunteerManagement = () => {
 
 
                             <td className={item?.is_active == 1 ? 'greenColor' : "redColor"}>{item?.is_active == 1 ? 'Active' : "Inactive"}</td>
-                            <td>{item?.created_at}</td>
+                            <td>{formatDate(item?.created_at)}</td>
                             <td>
                               <Dropdown className="tableDropdown">
                                 <Dropdown.Toggle variant="transparent" className="notButton classicToggle">

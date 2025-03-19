@@ -23,6 +23,7 @@ import CustomInput from "../../Components/CustomInput";
 import CustomButton from "../../Components/CustomButton";
 
 import "./style.css";
+import { formatDate } from "../../utils/dateUtils";
 
 export const AnnouncementManagement = () => {
   const base_url = "https://custom.mystagingserver.site/Tim-WDLLC/public/";
@@ -224,7 +225,7 @@ export const AnnouncementManagement = () => {
                                 : item?.title}
                             </td>
                             {/* <td className="text-capitalize">{item?.name}</td> */}
-                            <td>{item?.created_at}</td>
+                            <td>{formatDate(item?.created_at)}</td>
                             {/* <td className={item?.status == 1 ? 'greenColor' : "redColor"}>{item?.status == 1 ? 'Active' : "Inactive"}</td> */}
                             <td>
                               <Dropdown className="tableDropdown">

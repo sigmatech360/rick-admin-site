@@ -23,6 +23,21 @@ const CustomInput = (props) => {
             <button type='button' className='eyeButton' onClick={togglePassType}><FontAwesomeIcon icon={typePass ? faEyeSlash : faEye} /></button>
           </div>
           :
+          props.type === "textarea" ?
+          <textarea
+            rows={props?.rows}
+            placeholder={props?.placeholder}
+            disabled={props.disabled}
+            id={props?.id}
+            name={props?.name}
+            className={props?.inputClass}
+            onChange={props?.onChange}
+            multiple={props?.multiple}
+            value={props.value}
+            
+
+          />
+          :
           <input type={props?.type}
             placeholder={props?.placeholder}
             // required={props?.required}

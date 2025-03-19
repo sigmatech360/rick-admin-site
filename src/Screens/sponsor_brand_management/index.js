@@ -15,6 +15,7 @@ import CustomButton from "../../Components/CustomButton";
 import placeholderimage from '../../Assets/images/placeholderimage.png'
 
 import "./style.css";
+import { formatDate } from "../../utils/dateUtils";
 
  
 export const BrandManagement = () => {
@@ -207,7 +208,7 @@ export const BrandManagement = () => {
                               {item?.title}
                             </td> */}
                             <td className="text-capitalize">
-                              {item?.created_at}
+                              {formatDate(item?.created_at)}
                             </td>
                             {/* <td>{`$ ${item?.price}`}</td> */}
                             {/* <td>{item?.title}</td>

@@ -26,7 +26,7 @@ input[type="checkbox"] {
     font-size: 15px;
     color: #141414;
     width: 100%;
-    resize: none;
+    /* resize: none; */
     border-radius: 10px;
     appearance: none;
     -webkit-appearance: none;

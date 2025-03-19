@@ -13,3 +13,17 @@
 select.mainInput {
     appearance: auto;
 }
+
+.custom-tooltip .tooltip-inner {
+    background-color: #348F99 !important; /* Set the background to transparent */
+    border: 1px solid #348F99 !important; /* Set the border color and thickness */
+    color: #ffffff; /* Optional: set the text color to black (or whatever you prefer) */
+  }
+
+  .custom-tooltip .tooltip-arrow::before {
+    /* display: none; */
+    border-top-color: transparent !important; /* Make sure the arrow matches the background */
+    border-left-color: transparent !important; /* Make sure the arrow matches the background */
+    border-right-color: #348F99 !important; /* Make sure the arrow matches the background */
+    border-bottom-color: transparent !important; /* Set the arrow color to match the tooltip border */
+  }

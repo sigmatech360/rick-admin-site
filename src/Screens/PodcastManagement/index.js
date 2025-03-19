@@ -15,6 +15,7 @@ import CustomButton from "../../Components/CustomButton";
 
 
 import "./style.css";
+import { formatDate } from "../../utils/dateUtils";
 
 export const PodcastManagement = () => {
   const base_url = 'https://custom.mystagingserver.site/Tim-WDLLC/public/'
@@ -201,7 +202,7 @@ export const PodcastManagement = () => {
                             <td className="text-capitalize">
                               {item?.title}
                             </td>
-                            <td>{item?.created_at}</td>
+                            <td>{formatDate(item?.created_at)}</td>
 
                             <td>
                               <Dropdown className="tableDropdown">

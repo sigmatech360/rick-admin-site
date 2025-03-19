@@ -16,6 +16,7 @@ import CustomButton from "../../Components/CustomButton";
 import { SelectBox } from "../../Components/CustomSelect";
 import placeholderimage from '../../Assets/images/placeholderimage.png'
 import "./style.css";
+import { formatDate } from "../../utils/dateUtils";
 
 export const TopVolunteerManagement = () => {
   const base_url = 'https://custom.mystagingserver.site/Tim-WDLLC/public/'
@@ -267,7 +268,7 @@ export const TopVolunteerManagement = () => {
 
 
                             <td className={item?.is_active == 1 ? 'greenColor' : "redColor"}>{item?.is_active == 1 ? 'Active' : "Inactive"}</td>
-                            <td>{item?.created_at}</td>
+                            <td>{formatDate(item?.created_at)}</td>
                             <td>
                               <Dropdown className="tableDropdown">
                                 <Dropdown.Toggle variant="transparent" className="notButton classicToggle">

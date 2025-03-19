@@ -242,6 +242,7 @@ SponsorshipManagement = () => {
                       label="Select Project"
                       value={inputValues.project_id}
                       required
+                      tooltip="Select a project which you want to volunteer"
                       option={projectlists}
                       onChange={(event) => {
                         serInputvalue({ ...inputValues, project_id: event.target.value });

@@ -246,11 +246,12 @@ export const EditPodcast = () => {
                                                     label='Enter video link  '
                                                     required
                                                     id='ad_title'
-                                                    type='text'
+                                                    type='textarea'
                                                     placeholder='Enter video link  '
                                                     labelClass='mainLabel'
                                                     inputClass='mainInput'
                                                     name="video_src"
+                                                    rows='5'
                                                     value={formData?.video_src}
                                                     onChange={handleChange}
                                                 />

@@ -384,7 +384,7 @@ export const AddEvent = () => {
                       </div>
 
                       <div className="variationData">
-                        {agenda.map((variation, index) => (
+                        {agenda.map((variation, index, agenda) => (
                           <div key={variation.id} className="col-md-6">
                             <h6 className="font-weight-bold">Agenda Box {index + 1}</h6>
                             <div className="form-controls mb-4 d-flex align-items-center gap-3">
@@ -422,13 +422,16 @@ export const AddEvent = () => {
                                 >
                                   <FontAwesomeIcon icon={faPlusCircle} />
                                 </button>
-                                <button
+                                {agenda.length > 1 && (
+
+                                  <button
                                   onClick={() => handleRemoveVariation(index)}
                                   type="button"
                                   className="btn primaryButton text-white trashBtn"
-                                >
+                                  >
                                   <FontAwesomeIcon icon={faMinusCircle} />
                                 </button>
+                                )}
                               </div>
                             </div>
                             <div className="row">

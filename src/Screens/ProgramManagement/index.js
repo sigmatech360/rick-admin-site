@@ -15,6 +15,7 @@ import CustomButton from "../../Components/CustomButton";
 import placeholderimage from '../../Assets/images/placeholderimage.png'
 
 import "./style.css";
+import { formatDate } from "../../utils/dateUtils";
 
 export const ProgramManagement = () => {
   const base_url = 'https://custom.mystagingserver.site/Tim-WDLLC/public/'
@@ -189,7 +190,9 @@ export const ProgramManagement = () => {
 
                     >
                       <tbody>
-                        {currentItems?.map((item, index) => (
+                        {currentItems?.map((item, index) => {
+                          
+                          return (
                           <tr key={index}>
                             <td>{index + 1}</td>
                             <td><img src={
@@ -201,7 +204,7 @@ export const ProgramManagement = () => {
                               {item?.title}
                             </td>
                             <td className="text-capitalize">
-                              {item?.created_at}
+                              {formatDate(item?.created_at)}
                             </td>
                             {/* <td>{`$ ${item?.price}`}</td> */}
                             {/* <td>{item?.title}</td>
@@ -230,7 +233,7 @@ export const ProgramManagement = () => {
                               </Dropdown>
                             </td>
                           </tr>
-                        ))}
+                        )})}
                       </tbody>
                     </CustomTable>
                     <CustomPagination
