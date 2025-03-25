@@ -72,6 +72,10 @@ import { SponsorprogramDetail, sponsorprogramDetail } from "../Screens/sponsorpr
 import { AddProgramManagement } from "../Screens/sponsorprogram/AddProgram";
 import { EditsponsorProgram } from "../Screens/sponsorprogram/EditProgram";
 import { TopVolunteerManagement } from "../Screens/TopVolunteerManagement";
+import { EventAssignManagement } from "../Screens/EventAssignManagement";
+import { CMSStats } from "../Screens/Stats";
+import { EditStats } from "../Screens/Stats/EditStats";
+import StatsDetail from "../Screens/Stats/StatsDetail";
 
 export default function AdminRouter() {
   return (
@@ -88,6 +92,7 @@ export default function AdminRouter() {
 
         {/* book routes  */} 
         <Route path="/volunteer-management" element={<ProtectedRoutes Components={VolunteerManagement} />} />
+        <Route path="/interested-volunteer-management" element={<ProtectedRoutes Components={EventAssignManagement} />} />
         <Route path="/top-volunteer-management" element={<ProtectedRoutes Components={TopVolunteerManagement} />} />
 
 
@@ -106,6 +111,9 @@ export default function AdminRouter() {
 
         <Route path="/create-notification" element={<ProtectedRoutes Components={CreateNotification} />} />
         <Route path="/notification-list" element={<ProtectedRoutes Components={NotificationManagement} />} />
+        <Route path="/stats" element={<ProtectedRoutes Components={CMSStats} />} />
+        <Route path="/stats/edit-stats/:id" element={<ProtectedRoutes Components={EditStats} />} />
+        <Route path="/stats/stats-detail/:id" element={<ProtectedRoutes Components={StatsDetail} />} />
         {/* <Route path="/event-management/event-details/:id" element={<ProtectedRoutes Components={EventDetail} />} /> */}
         {/* <Route path="/event-management/edit-event/:id" element={<ProtectedRoutes Components={EditEvent} />} /> */}
 

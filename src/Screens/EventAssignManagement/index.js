@@ -19,7 +19,7 @@ import placeholderimage from '../../Assets/images/placeholderimage.png'
 import "./style.css";
 import { formatDate } from "../../utils/dateUtils";
 
-export const VolunteerManagement = () => {
+export const EventAssignManagement = () => {
   const base_url = 'https://custom.mystagingserver.site/Tim-WDLLC/public/'
   const [data, setData] = useState([]);
   const [showModal, setShowModal] = useState(false);
@@ -57,17 +57,19 @@ export const VolunteerManagement = () => {
   const handleChange = (e) => {
     setInputValue(e.target.value);
   }
-  
-  
+
+  const filterData = data?.filter(item => item?.name?.toLowerCase().includes(inputValue.toLowerCase())
+  );
+
   const [inputValues, serInputvalue] = useState({})
   const [currentItems, setCurrentItems] = useState();
-  useEffect(()=>{
-    const filterData = data?.filter(item => item?.name?.toLowerCase().includes(inputValue.toLowerCase()));
+useEffect(()=>{
+  const filterData = data?.filter(item => item?.name?.toLowerCase().includes(inputValue.toLowerCase()));
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
     setCurrentItems(filterData?.slice(indexOfFirstItem, indexOfLastItem));
-  },[currentPage,inputValue])
-
+    
+  },[currentPage,inputValue , inputValues,assignuser])
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
   const Volunteer = () => {
@@ -75,7 +77,7 @@ export const VolunteerManagement = () => {
     document.querySelector('.loaderBox').classList.remove("d-none");
 
 
-    const url = `${apiUrl}/api/admin/volunteer`
+    const url = inputValues?.event_id ? `${apiUrl}/api/admin/event/interested-volunteer/${inputValues?.event_id}` : ``
     fetch(url, {
       method: 'GET',
       headers: {
@@ -94,6 +96,7 @@ export const VolunteerManagement = () => {
         document.querySelector('.loaderBox').classList.add("d-none");
         setData(data?.data);
         setCurrentItems(data?.data?.slice(0, 8));
+        setAssignStatus(data?.data?.map(item=>({id:item?.id,status:item?.status})))
       })
       .catch((error) => {
         document.querySelector('.loaderBox').classList.add("d-none");
@@ -112,7 +115,7 @@ export const VolunteerManagement = () => {
 
     Volunteer()
 
-  }, []);
+  }, [inputValues?.event_id]);
 
   const maleHeaders = [
     {
@@ -168,6 +171,7 @@ export const VolunteerManagement = () => {
       });
   };
 
+
   const [eventlist, setEventlist] = useState([])
 
 
@@ -188,7 +192,7 @@ export const VolunteerManagement = () => {
         response.json()
       )
       .then((data) => {
-        console.log("Event list",data?.data)
+        console.log(data?.data)
         document.querySelector('.loaderBox').classList.add("d-none");
         setEventlist(data?.data);
       })
@@ -200,10 +204,12 @@ export const VolunteerManagement = () => {
   }
 
   const LogoutData = localStorage.getItem('login');
+  
 
-  const [getassign, setGetassigntext] = useState(" ")
+  const [assignStatus, setAssignStatus] = useState([])
   const handleAssign = (id, status) => {
-    console.log("status", status)
+    setAssignStatus(assignStatus.map(item => item.id === id ? { ...item, status: status === "Assigned" ? "Unassigned" : "Assigned" } : item))
+    // console.log("status", status)
     const formDataMethod = new FormData();
     formDataMethod.append('event_id', inputValues?.event_id);
     formDataMethod.append('user_id', id);
@@ -223,11 +229,11 @@ export const VolunteerManagement = () => {
       .then((data) => {
         document.querySelector('.loaderBox').classList.add("d-none");
         console.log(data);
-        setShowModal5(true)
+        // setShowModal5(true)
         setAssignuser(data?.message)
-        if (data?.status == true) {
-          Volunteer()
-        }
+        Volunteer()
+        // if (data?.status == true) {
+        // }
       })
 
       .catch((error) => {
@@ -236,9 +242,23 @@ export const VolunteerManagement = () => {
       })
   };
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   const [topstatusmodal, setTopstatusmodal] = useState("")
 
-  console.log("topstatusmodal", topstatusmodal)
+
   const handleTop = async (id,isTop) => {
     if(!isTop){
       try {
@@ -290,12 +310,14 @@ export const VolunteerManagement = () => {
 
 
   const [multiopction, setMultiopction] = useState([]);
-  const option = [{title: 'Interested Volunteers'},{title : 'Active Volunteers'},{title:'Inactive Volunteers'}];
+
   const options = [
-    { id: "1", title: "Active Volunteers" },
-    { id: "0", title: "Inactive Volunteers" },
+    { value: "chocolate", label: "Chocolate" },
+    { value: "strawberry", label: "Strawberry" },
+    { value: "vanilla", label: "Vanilla" },
   ];
 
+  const options1 = [{ value: "chocolate", label: "Chocolate" }];
 
   // useEffect(() => {
   //   setMultiopction(options1);
@@ -304,27 +326,6 @@ export const VolunteerManagement = () => {
   const handleChangeopt = (selectedOptions) => {
     setMultiopction(selectedOptions || []);
   };
-  const handleChangeVolunteerType = (e) =>{
-    const type = e.target.value;
-    console.log("volunteer type", type , data);
-    if(type !== 'interested'){
-
-      let newData = data.filter((volunteer) => volunteer.is_active == type)
-      setCurrentItems(newData?.slice(0, 8));
-    }
-    else{
-      setCurrentItems(data?.slice(0, 8));
-    }
-    
-    // setData((prev) => prev.filter((volunteer) => volunteer.is_active == type));
-    
-  }
-
-
-  console.log("multiopction" , multiopction)
-
-
-
 
   return (
     <>
@@ -335,7 +336,7 @@ export const VolunteerManagement = () => {
               <div className="dashCard">
                 <div className="row mb-3 justify-content-between">
                   <div className="col-md-3 mb-2">
-                    <h2 className="mainTitle">Volunteer Management</h2>
+                    <h2 className="mainTitle">Assign Volunteer Management</h2>
                   </div>
 
 
@@ -388,133 +389,138 @@ export const VolunteerManagement = () => {
 
                   <div className="col-md-3 mb-2">
                     <SelectBox
-                      label="Volunteers"
-                      placeholder="All Volunteer"
                       multiple
                       selectClass="mainInput"
                       name="event_id"
                       // label="Select Project"
                       value={inputValues.event_id}
                       required
-                      option={options}
-                      // onChange={(event) => {
-                      //   serInputvalue({ ...inputValues, event_id: event.target.value });
-                      //   // console.log(formData);
-                      // }} 
-                      onChange={handleChangeVolunteerType} 
-                      />
+                      option={eventlist}
+                      label='Select Event'
+                      onChange={(event) => {
+                        serInputvalue({ ...inputValues, event_id: event.target.value });
+                        // console.log(formData);
+                      }} />
                   </div>
-                  <div className="col-md-3   mb-2">
+                  {/* <div className="col-md-3   mb-2">
 
-                    <CustomInput type="text" label='Search' placeholder="Search Volunteer..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
-                  </div>
+                    <CustomInput type="text" placeholder="Search Volunteer..." value={inputValue} inputClass="mainInput" onChange={handleChange} />
+                  </div> */}
 
                 </div>
                 <div className="row mb-3">
 
                   <div className="col-12">
-                    <CustomTable
-                      headers={maleHeaders}
+                    {inputValues?.event_id? (
+                      <>
+                      <CustomTable
+                        headers={maleHeaders}
 
-                    >
-                      <tbody>
-                        {currentItems?.map((item, index) => (
-                          <tr key={index}>
-                            <td>{index + 1}</td>
-                            <td><img src={
-                              item?.image
-                                ? `${apiUrl}/${item.image}`
-                                : placeholderimage
-                            } className="avatarIcon" /></td>
-                            <td className="text-capitalize">
-                              {item?.name}
-                            </td>
-                            <td>{item?.email}</td>
-
-
-                            <td className={item?.is_active == 1 ? 'greenColor' : "redColor"}>{item?.is_active == 1 ? 'Active' : "Inactive"}</td>
-                            <td>{formatDate(item?.created_at)}</td>
-                            <td>
-                              <Dropdown className="tableDropdown">
-                                <Dropdown.Toggle variant="transparent" className="notButton classicToggle">
-                                  <FontAwesomeIcon icon={faEllipsisV} />
-                                </Dropdown.Toggle>
-                                <Dropdown.Menu align="end" className="tableDropdownMenu">
-                                  {/* <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />Assign Event</Link> */}
-                                  <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
-                                  {/* <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faTrash} className="tableActionIcon" />Delete</Link> */}
-                                  {/* <Link to={`/volunteer-management/edit-volunteer/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link> */}
+                      >
+                        <tbody>
+                          {currentItems?.map((item, index) => (
+                            <tr key={index}>
+                              <td>{index + 1}</td>
+                              <td><img src={
+                                item?.image
+                                  ? `${apiUrl}/${item.image}`
+                                  : placeholderimage
+                              } className="avatarIcon" /></td>
+                              <td className="text-capitalize">
+                                {item?.name}
+                              </td>
+                              <td>{item?.email}</td>
 
 
-
-                                  {/* <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faTrash} className="tableActionIcon" />Delete</Link> */}
-                                  {item?.is_top !== undefined ? (<button
-                                    type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
-                                    onClick={() => Volusteeractiveinactive(item?.id)}
-                                  >
-                                    {item?.is_active == 1 ? <FontAwesomeIcon
-                                      icon={faUserSlash}
-                                    ></FontAwesomeIcon> : <FontAwesomeIcon
-                                      icon={faUser}
-                                    ></FontAwesomeIcon>}
-
-                                    {item?.is_active == 1 ? 'Inactive' : "Active"}
-                                  </button>) : ""}
+                              <td className={item?.is_active == 1 ? 'greenColor' : "redColor"}>{item?.is_active == 1 ? 'Active' : "Inactive"}</td>
+                              <td>{formatDate(item?.created_at)}</td>
+                              <td>
+                                <Dropdown className="tableDropdown">
+                                  <Dropdown.Toggle variant="transparent" className="notButton classicToggle">
+                                    <FontAwesomeIcon icon={faEllipsisV} />
+                                  </Dropdown.Toggle>
+                                  <Dropdown.Menu align="end" className="tableDropdownMenu">
+                                    {/* <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />Assign Event</Link> */}
+                                    <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
+                                    {/* <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faTrash} className="tableActionIcon" />Delete</Link> */}
+                                    {/* <Link to={`/volunteer-management/edit-volunteer/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link> */}
 
 
-                                  <button
-                                    type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
-                                    onClick={() => handleAssign(item?.id, item?.status)}
-                                  >
 
-                                    {item?.status ? (
-                                      item.status === "Assigned" ? (
-                                        <>
-                                          <FontAwesomeIcon icon={faUserTimes} /> Unassigned
-                                        </>
+                                    {/* <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faTrash} className="tableActionIcon" />Delete</Link> */}
+                                    {item?.is_top !== undefined ? (<button
+                                      type="button"
+                                      className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
+                                      onClick={() => Volusteeractiveinactive(item?.id)}
+                                    >
+                                      {item?.is_active == 1 ? <FontAwesomeIcon
+                                        icon={faUserSlash}
+                                      ></FontAwesomeIcon> : <FontAwesomeIcon
+                                        icon={faUser}
+                                      ></FontAwesomeIcon>}
+
+                                      {item?.is_active == 1 ? 'Inactive' : "Active"}
+                                    </button>) : ""}
+
+
+                                    <button
+                                      type="button"
+                                      className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
+                                      onClick={() => handleAssign(item?.id, item?.status)}
+                                    >
+
+                                      {item?.status  ? (
+                                        assignStatus.find(assign => assign.id === item.id)?.status === "Assigned" ? (
+                                          <>
+                                        {/* item.status === "Assigned" ? (
+                                          <> */}
+                                            <FontAwesomeIcon icon={faUserTimes} /> Unassign
+                                          </>
+                                        ) : (
+                                          <>
+                                            <FontAwesomeIcon icon={faTasks} /> Assign
+                                          </>
+                                        )
                                       ) : (
-                                        <>
-                                          <FontAwesomeIcon icon={faTasks} /> Assigned
-                                        </>
-                                      )
-                                    ) : (
-                                      ""
-                                    )}
+                                        ""
+                                      )}
 
-                                    {/* {item?.status ? (item.status === "Assigned" ? "Unassigned" : "Assigned") : ""} */}
+                                      {/* {item?.status ? (item.status === "Assigned" ? "Unassigned" : "Assigned") : ""} */}
 
 
 
-                                  </button>
+                                    </button>
 
 
 
 
-                                  <button
-                                    type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
-                                    onClick={() => handleTop(item?.id,item?.is_top)}
-                                  >
-                                    {item?.is_top ? "Already added top Top Volunteer" : "Add to Top Volunteer"}
+                                    {/* <button
+                                      type="button"
+                                      className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
+                                      onClick={() => handleTop(item?.id,item?.is_top)}
+                                    >
+                                      {item?.is_top ? "Already added top Top Volunteer" : "Add to Top Volunteer"}
 
 
-                                  </button>
-                                </Dropdown.Menu>
-                              </Dropdown>
-                            </td>
-                          </tr>
-                        ))}
-                      </tbody>
-                    </CustomTable>
-                    <CustomPagination
-                      itemsPerPage={itemsPerPage}
-                      totalItems={data?.length}
-                      currentPage={currentPage}
-                      onPageChange={handlePageChange}
-                    />
-                  </div>
+                                    </button> */}
+                                  </Dropdown.Menu>
+                                </Dropdown>
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </CustomTable>
+                      <CustomPagination
+                        itemsPerPage={itemsPerPage}
+                        totalItems={data?.length}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                      />
+                      </>
+                    ):(
+                      <h5 className="text-secondary">Please select an Event to see interested Volunteers.</h5>
+                    )}
+                  </div>  
                 </div>
               </div>
             </div>

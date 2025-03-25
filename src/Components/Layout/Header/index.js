@@ -72,7 +72,6 @@ export const Header = (props) => {
 
   const [userData, setUserData] = useState()
 
-  console.log("userData", userData)
 
   const PrfileDetail = () => {
     const LogoutData = localStorage.getItem("login");
@@ -100,7 +99,7 @@ export const Header = (props) => {
 
 
 
-  console.log("userData", userData?.image)
+  // console.log("userData", userData?.image)
   useEffect(() => {
     PrfileDetail()
   }, [])

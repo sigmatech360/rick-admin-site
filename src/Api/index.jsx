@@ -18,6 +18,7 @@ export const useApi = (endpoint) => {
       document.querySelector('.loaderBox').classList.remove("d-none");
       try {
         const response = await fetch(base_url + endpoint, {
+          method: 'GET',
           headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json',

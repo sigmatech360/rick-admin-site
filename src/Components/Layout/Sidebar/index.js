@@ -31,7 +31,9 @@ import "./style.css";
 const sideBarNavlinks = [
   { title: 'Dashboard', link: '/dashboard', icon: Dashbord },
   { title: 'Volunteers Management', link: '/volunteer-management', icon: VolunteersManagement },
+  { title: 'Event Assign Management', link: '/interested-volunteer-management', icon: VolunteersManagement },
   { title: 'Create Notification', link: '/create-notification', icon: VolunteersManagement },
+  { title: 'CMS Stats', link: '/stats', icon: EventManagement },
   { title: 'Programs Management', link: '/programs-management', icon: ProgramsManagement },
   { title: 'Event Management', link: '/event-management', icon: EventManagement },
   { title: 'Podcast Management', link: '/podcast-management', icon: PodcastManagement },

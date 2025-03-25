@@ -16,6 +16,7 @@
     "bootstrap": "^5.2.3",
     "dotenv": "^16.4.7",
     "lottie-react": "^2.3.1",
+    "moment": "^2.30.1",
     "react": "^18.2.0",
     "react-bootstrap": "^2.7.0",
     "react-chartjs-2": "^5.2.0",
@@ -37,7 +38,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
+      "react-app/jest"  
     ]
   },
   "browserslist": {
