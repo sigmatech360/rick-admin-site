@@ -83,6 +83,9 @@ const EditProfile = () => {
         if (file) {
             const previewURL = URL.createObjectURL(file); // Generate a preview URL
 
+            console.log('test', file,' preview : ', previewURL);
+            
+
             setFormData((prevData) => ({
                 ...prevData,
                 image: file,          // Store the actual file for backend upload

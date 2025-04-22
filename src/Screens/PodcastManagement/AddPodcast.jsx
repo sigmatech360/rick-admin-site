@@ -190,7 +190,8 @@ export const AddPodcast = () => {
                                                     label='Enter video link  '
                                                     required
                                                     id='ad_title'
-                                                    type='text'
+                                                    type='textarea'
+                                                    rows='5'
                                                     placeholder='Enter video link  '
                                                     labelClass='mainLabel'
                                                     inputClass='mainInput'
@@ -211,6 +212,18 @@ export const AddPodcast = () => {
                                                     inputClass='mainInput'
                                                     name="date" // Updated to match the key in formData
                                                     value={formData.date} // Ensures it binds to the correct key
+                                                    onChange={handleChange}
+                                                />
+                                                <CustomInput
+                                                    label='Enter Thumbnail Image'
+                                                    required
+                                                    id='image'
+                                                    type='text'
+                                                    placeholder='Select a date'
+                                                    labelClass='mainLabel'
+                                                    inputClass='mainInput'
+                                                    name="date" // Updated to match the key in formData
+                                                    value={formData.image} // Ensures it binds to the correct key
                                                     onChange={handleChange}
                                                 />
                                             </div>

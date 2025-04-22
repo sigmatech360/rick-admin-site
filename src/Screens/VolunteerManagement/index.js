@@ -497,7 +497,7 @@ export const VolunteerManagement = () => {
                                     className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
                                     onClick={() => handleTop(item?.id,item?.is_top)}
                                   >
-                                    {item?.is_top ? "Already added top Top Volunteer" : "Add to Top Volunteer"}
+                                    {item?.is_top ? "Already added to Top Volunteer" : "Add to Top Volunteer"}
 
 
                                   </button>

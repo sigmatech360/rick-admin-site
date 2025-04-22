@@ -271,6 +271,18 @@ export const EditPodcast = () => {
                                                     value={formData?.date}
                                                     onChange={handleChange}
                                                 />
+                                                <CustomInput
+                                                    label='Enter Thumbnail Image'
+                                                    required
+                                                    id='image'
+                                                    type='text'
+                                                    placeholder='Select a date'
+                                                    labelClass='mainLabel'
+                                                    inputClass='mainInput'
+                                                    name="date" // Updated to match the key in formData
+                                                    value={formData.image} // Ensures it binds to the correct key
+                                                    onChange={handleChange}
+                                                />
                                             </div>
 
 
