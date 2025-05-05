@@ -219,7 +219,7 @@ export const AddPodcast = () => {
                                                     required
                                                     id='image'
                                                     type='text'
-                                                    placeholder='Select a date'
+                                                    placeholder='Enter Thumbnail Image'
                                                     labelClass='mainLabel'
                                                     inputClass='mainInput'
                                                     name="date" // Updated to match the key in formData

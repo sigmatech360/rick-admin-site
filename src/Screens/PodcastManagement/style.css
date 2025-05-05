@@ -1,12 +1,3 @@
-/* body {
-     color: #fff;
-    height: 104%;
-    width: 90%;
-    overflow: hidden;
-    position: absolute;
-    margin: 0;
-    padding: 0;
-} */
 .stats {
     margin-bottom: 1rem;
     border-right: 2px solid #fff0;
@@ -24,6 +15,39 @@ iframe {
     width: 100%;
     object-fit: cover;
     height: 530px;
+}
+.thumbnail-img{
+    position: relative;
+    display: inline-block;
+    width: fit-content;
+}
+.thumbnail-img input{
+    display: none;
+}
+
+.thumbnail-img label{
+    font-size: 14px;
+    background: var(--primaryColor);
+    color: #fff;
+    border-radius: 99px;
+    width: 30px;
+    aspect-ratio: 1 / 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    bottom: -5px;
+    right: -5px;
+    cursor: pointer;
+}
+.thumbnail-img img {
+    width: 90px;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 10px;
+    outline: 2px solid #bcbcbc;
+    outline-offset: 4px;
 }
 
 .font-weight-bold {

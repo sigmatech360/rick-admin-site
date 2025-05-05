@@ -11,6 +11,8 @@ import RichTextEditor from "react-rte";
 
 import { SelectBox } from "../../Components/CustomSelect";
 import CustomButton from "../../Components/CustomButton";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faCamera } from "@fortawesome/free-solid-svg-icons";
 export const EditPodcast = () => {
     const { id } = useParams();
     const [message, setMessage] = useState("")
@@ -271,18 +273,36 @@ export const EditPodcast = () => {
                                                     value={formData?.date}
                                                     onChange={handleChange}
                                                 />
-                                                <CustomInput
-                                                    label='Enter Thumbnail Image'
-                                                    required
-                                                    id='image'
-                                                    type='text'
-                                                    placeholder='Select a date'
-                                                    labelClass='mainLabel'
-                                                    inputClass='mainInput'
-                                                    name="date" // Updated to match the key in formData
-                                                    value={formData.image} // Ensures it binds to the correct key
-                                                    onChange={handleChange}
-                                                />
+                                                <div className="thumbnail-wrapper d-flex flex-column">
+
+                                                    <label className="form-label mainLabel"> Thumbnail Image<span className="text-danger">*</span></label>
+                                                <div className="thumbnail-img">
+
+                                                    {(formData?.image) && (
+                                                        <img
+                                                            src={
+                                                                formData?.imageFile?.startsWith("blob:")
+                                                                    ? formData.imageFile
+                                                                    : `${apiUrl}/${formData.image}`
+                                                            }
+                                                            className="img-fluid mt-2"
+                                                            alt="Product"
+                                                        />
+                                                    )}
+                                                    <CustomInput
+                                                        label={<FontAwesomeIcon icon={faCamera} />}
+                                                        // required
+                                                        id='image'
+                                                        type='file'
+                                                        placeholder='Enter Thumbnail Image'
+                                                        labelClass='mainLabel'
+                                                        inputClass='mainInput'
+                                                        name="image" // Updated to match the key in formData
+                                                        // value={formData.image} // Ensures it binds to the correct key
+                                                        onChange={handleChange}
+                                                    />
+                                                </div>
+                                                </div>
                                             </div>
 
 

@@ -189,7 +189,8 @@ const EditProfile = () => {
                                                         className="img-fluid mt-2"
                                                         alt="Product"
                                                     />
-                                                )}      <input type="file" accept="img/*" className="d-none" id="profileImage" onChange={filehandleChange} />
+                                                )}      
+                                                <input type="file" accept="img/*" className="d-none" id="profileImage" onChange={filehandleChange} />
                                                 <label htmlFor="profileImage" className="imageUploadButton"><FontAwesomeIcon icon={faCamera} /></label>
                                             </div>
                                         </div>
