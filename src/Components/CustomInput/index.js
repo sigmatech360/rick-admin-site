@@ -40,7 +40,7 @@ const CustomInput = (props) => {
           :
           <input type={props?.type}
             placeholder={props?.placeholder}
-            // required={props?.required}
+            required={props?.required}
             disabled={props.disabled}
             id={props?.id}
             name={props?.name}

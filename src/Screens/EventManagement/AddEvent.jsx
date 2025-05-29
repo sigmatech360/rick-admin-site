@@ -317,16 +317,6 @@ export const AddEvent = () => {
                           />
                         )}
                       </div>
-
-
-
-
-
-
-
-
-
-
                       <div className="checkBox col-md-6 mb-4">
                         <label className="fw-semibold">Show in Mobile</label>
                         <div>
@@ -383,9 +373,9 @@ export const AddEvent = () => {
                         </div>
                       </div>
 
-                      <div className="variationData">
+                      <div className="variationData col-md-6">
                         {agenda.map((variation, index, agenda) => (
-                          <div key={variation.id} className="col-md-6">
+                          <div key={variation.id} className="">
                             <h6 className="font-weight-bold">Agenda Box {index + 1}</h6>
                             <div className="form-controls mb-4 d-flex align-items-center gap-3">
                               <div className="col-md- ">
@@ -466,6 +456,21 @@ export const AddEvent = () => {
                             </div>
                           </div>
                         ))}
+                      </div>
+
+                      <div className="col-md-6 mb-4">
+                        <CustomInput
+                          label="Event Brite Link"
+                          required
+                          id="name"
+                          type="text"
+                          placeholder="Enter Ticket Link"
+                          labelClass="mainLabel"
+                          inputClass="mainInput"
+                          name="ticketing_link"
+                          value={formData?.ticketing_link}
+                          onChange={handleChange}
+                        />
                       </div>
 
                       <div className="col-md-12 mb-4">

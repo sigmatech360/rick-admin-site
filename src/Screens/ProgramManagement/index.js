@@ -191,6 +191,7 @@ export const ProgramManagement = () => {
                     >
                       <tbody>
                         {currentItems?.map((item, index) => {
+                          console.log("currentItems", currentItems)
                           
                           return (
                           <tr key={index}>
@@ -226,8 +227,8 @@ export const ProgramManagement = () => {
                                     ></FontAwesomeIcon>{" "}
                                     Delete
                                   </button>
-                                  <Link to={`/programs-management/program-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
-                                  <Link to={`/programs-management/edit-program/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEdit} className="tableActionIcon" />Edit</Link>
+                                  <Link to={`/programs-management/program-details/${item?.slug}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
+                                  <Link to={`/programs-management/edit-program/${item?.slug}`} className="tableAction"><FontAwesomeIcon icon={faEdit} className="tableActionIcon" />Edit</Link>
 
                                 </Dropdown.Menu>
                               </Dropdown>

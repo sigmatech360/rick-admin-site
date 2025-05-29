@@ -8,7 +8,7 @@ import CustomInput from '../../Components/CustomInput';
 
 import CustomButton from "../../Components/CustomButton";
 export const EditProgram = () => {
-    const { id } = useParams();
+    const { id, slug } = useParams();
     const [categories, setCategories] = useState({});
     const [unit, setUnit] = useState({});
     const [showModal, setShowModal] = useState(false);
@@ -24,7 +24,7 @@ export const EditProgram = () => {
     const fetchProgramData = () => {
         const LogoutData = localStorage.getItem('login');
         document.querySelector('.loaderBox').classList.remove("d-none");
-        fetch(`${apiUrl}/api/admin/program/${id}`, {
+        fetch(`${apiUrl}/api/admin/program/${slug}`, {
             method: 'GET',
             headers: {
                 'Accept': 'application/json',
@@ -66,7 +66,7 @@ export const EditProgram = () => {
     }
     useEffect(() => {
         fetchProgramData()
-    }, [])
+    }, [id, slug])
 
     const bookType = [
         {
@@ -130,7 +130,7 @@ export const EditProgram = () => {
         console.log(formData)
         document.querySelector('.loaderBox').classList.remove("d-none");
         // Make the fetch request
-        fetch(`${apiUrl}/api/admin/program/update/${id}`, {
+        fetch(`${apiUrl}/api/admin/program/update/${formData.id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

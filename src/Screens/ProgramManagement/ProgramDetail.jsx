@@ -9,7 +9,7 @@ import CustomButton from "../../Components/CustomButton";
 
 import placeholderimage from "../../Assets/images/placeholderimage.png";
 export const ProgramDetail = () => {
-  const { id } = useParams();
+  const { id, slug } = useParams();
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
 
@@ -38,7 +38,7 @@ export const ProgramDetail = () => {
     const LogoutData = localStorage.getItem("login");
     document.title = "Hisoc Admin | Program Detail";
     document.querySelector(".loaderBox").classList.remove("d-none");
-    fetch(`${apiUrl}/api/admin/program/${id}`, {
+    fetch(`${apiUrl}/api/admin/program/${slug}`, {
       method: "GET",
       headers: {
         Accept: "application/json",
@@ -59,7 +59,7 @@ export const ProgramDetail = () => {
         document.querySelector(".loaderBox").classList.add("d-none");
         console.log(error);
       });
-  }, [id]);
+  }, [slug]);
 
   return (
     <>

@@ -121,10 +121,11 @@ export default function AdminRouter() {
 
 
         <Route path="/programs-management" element={<ProtectedRoutes Components={ProgramManagement} />} />
-        <Route path="/programs-management/program-details/:id" element={<ProtectedRoutes Components={ProgramDetail} />} />
+        {/* <Route path="/programs-management/program-details/:id" element={<ProtectedRoutes Components={ProgramDetail} />} /> */}
+        <Route path="/programs-management/program-details/:slug" element={<ProtectedRoutes Components={ProgramDetail} />} />
         <Route path="/add-program" element={<ProtectedRoutes Components={AddProgram} />} />
         {/* <Route path="/programs-management/program-details/:id" element={<ProtectedRoutes Components={ChapterDetails} />} /> */}
-        <Route path="/programs-management/edit-program/:id" element={<ProtectedRoutes Components={EditProgram} />} />
+        <Route path="/programs-management/edit-program/:slug" element={<ProtectedRoutes Components={EditProgram} />} />
 
 
         <Route path="/sponsor-program" element={<ProtectedRoutes Components={SponsoredProgram} />} />
