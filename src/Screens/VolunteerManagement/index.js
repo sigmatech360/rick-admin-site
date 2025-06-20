@@ -60,13 +60,25 @@ export const VolunteerManagement = () => {
   
   
   const [inputValues, serInputvalue] = useState({})
+  const [tableData, setTableData] = useState();
   const [currentItems, setCurrentItems] = useState();
   useEffect(()=>{
-    const filterData = data?.filter(item => item?.name?.toLowerCase().includes(inputValue.toLowerCase()));
+    console.log('inputValue : ', inputValue, inputValue.length);
+    
+    const filterData = tableData?.filter(item => item?.name?.toLowerCase().includes(inputValue.toLowerCase()));
+    
+    setCurrentItems(filterData?.slice(0,8));
+  },[inputValue])
+
+  useEffect(()=>{
     const indexOfLastItem = currentPage * itemsPerPage;
     const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-    setCurrentItems(filterData?.slice(indexOfFirstItem, indexOfLastItem));
-  },[currentPage,inputValue])
+    setCurrentItems(tableData?.slice(indexOfFirstItem,indexOfLastItem))
+  },[currentPage])
+
+  useEffect(()=>{
+    setCurrentItems(tableData?.slice(0, 8))
+  },[tableData])
 
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
@@ -93,7 +105,8 @@ export const VolunteerManagement = () => {
         console.log(data?.data)
         document.querySelector('.loaderBox').classList.add("d-none");
         setData(data?.data);
-        setCurrentItems(data?.data?.slice(0, 8));
+        setTableData(data?.data)
+        // setCurrentItems(data?.data?.slice(0, 8));
       })
       .catch((error) => {
         document.querySelector('.loaderBox').classList.add("d-none");
@@ -201,7 +214,6 @@ export const VolunteerManagement = () => {
 
   const LogoutData = localStorage.getItem('login');
 
-  const [getassign, setGetassigntext] = useState(" ")
   const handleAssign = (id, status) => {
     console.log("status", status)
     const formDataMethod = new FormData();
@@ -238,7 +250,6 @@ export const VolunteerManagement = () => {
 
   const [topstatusmodal, setTopstatusmodal] = useState("")
 
-  console.log("topstatusmodal", topstatusmodal)
   const handleTop = async (id,isTop) => {
     if(!isTop){
       try {
@@ -292,6 +303,7 @@ export const VolunteerManagement = () => {
   const [multiopction, setMultiopction] = useState([]);
   const option = [{title: 'Interested Volunteers'},{title : 'Active Volunteers'},{title:'Inactive Volunteers'}];
   const options = [
+    { id: "all", title: "All Volunteer" },
     { id: "1", title: "Active Volunteers" },
     { id: "0", title: "Inactive Volunteers" },
   ];
@@ -307,21 +319,19 @@ export const VolunteerManagement = () => {
   const handleChangeVolunteerType = (e) =>{
     const type = e.target.value;
     console.log("volunteer type", type , data);
-    if(type !== 'interested'){
+    if(type !== 'all'){
 
       let newData = data.filter((volunteer) => volunteer.is_active == type)
-      setCurrentItems(newData?.slice(0, 8));
+      setTableData(newData);
     }
     else{
-      setCurrentItems(data?.slice(0, 8));
+      setTableData(data);
     }
     
     // setData((prev) => prev.filter((volunteer) => volunteer.is_active == type));
     
   }
 
-
-  console.log("multiopction" , multiopction)
 
 
 
@@ -389,7 +399,8 @@ export const VolunteerManagement = () => {
                   <div className="col-md-3 mb-2">
                     <SelectBox
                       label="Volunteers"
-                      placeholder="All Volunteer"
+                      // placeholder="All Volunteer"
+                      noPlaceholder={true}
                       multiple
                       selectClass="mainInput"
                       name="event_id"
@@ -510,7 +521,7 @@ export const VolunteerManagement = () => {
                     </CustomTable>
                     <CustomPagination
                       itemsPerPage={itemsPerPage}
-                      totalItems={data?.length}
+                      totalItems={tableData?.length}
                       currentPage={currentPage}
                       onPageChange={handlePageChange}
                     />

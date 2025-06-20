@@ -171,7 +171,7 @@ export  const CMSStats = () => {
                                 : placeholderimage
                             } className="avatarIcon" /></td> */}
                             <td className="text-capitalize">
-                              {item?.show_in_mobile === 1 ? 'Mobile Stats':'Web Stats'}
+                              {item?.show_in_mobile == 1 ? 'Mobile Stats':'Web Stats'}
                             </td>
                             {/* <td className="text-capitalize">
                               {formatDate(item?.created_at)}
@@ -197,12 +197,14 @@ export  const CMSStats = () => {
                         )})}
                       </tbody>
                     </CustomTable>
-                    <CustomPagination
-                      itemsPerPage={itemsPerPage}
-                      totalItems={data?.length}
-                      currentPage={currentPage}
-                      onPageChange={handlePageChange}
-                    />
+                    {data?.length / itemsPerPage > 1 && 
+                      <CustomPagination
+                        itemsPerPage={itemsPerPage}
+                        totalItems={data?.length}
+                        currentPage={currentPage}
+                        onPageChange={handlePageChange}
+                      />
+                    }
                   </div>
                 </div>
               </div>

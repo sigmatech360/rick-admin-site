@@ -510,12 +510,14 @@ useEffect(()=>{
                           ))}
                         </tbody>
                       </CustomTable>
+                      {data?.length / itemsPerPage > 1 && 
                       <CustomPagination
                         itemsPerPage={itemsPerPage}
                         totalItems={data?.length}
                         currentPage={currentPage}
                         onPageChange={handlePageChange}
                       />
+                    }
                       </>
                     ):(
                       <h5 className="text-secondary">Please select an Event to see interested Volunteers.</h5>

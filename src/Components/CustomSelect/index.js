@@ -83,7 +83,7 @@ export const SelectBox = (props) => {
             )}
             <div className="fieldData">
                 <select className={props?.selectClass} name={props?.name} onChange={props.onChange} value={props.value}>
-                    <option value="">{props?.label ?  props?.placeholder ? `${props.placeholder}`: `  ${props.label}` : "Select"}</option>
+                    {!props?.noPlaceholder && <option value="">{props?.label ?  props?.placeholder ? `${props.placeholder}`: `  ${props.label}` : "Select"}</option>}
                     {Array.isArray(props.option) &&
                         props.option.map((item) => (
                             <option key={item?.id} value={item?.id}>{item?.name || item?.title}</option>
