@@ -26,6 +26,7 @@
     "react-rte": "^0.16.5",
     "react-scripts": "5.0.1",
     "react-select": "^5.7.4",
+    "react-toastify": "^11.0.5",
     "simplebar-react": "^2.4.3",
     "web-vitals": "^2.1.0"
   },
@@ -38,7 +39,7 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"  
+      "react-app/jest"
     ]
   },
   "browserslist": {

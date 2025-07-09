@@ -149,6 +149,10 @@ export const EventManagement = () => {
       key: "created_at",
       title: "Created On",
     },
+    {
+      key: "status",
+      title: "Status",
+    },
 
     {
       key: "action",
@@ -203,6 +207,7 @@ export const EventManagement = () => {
                             </td>
                             <td className="text-capitalize">{item?.title}</td>
                             <td>{item?.date}</td>
+                            <td className="text-capitalize">{item?.status == 'pastevent' ? 'Past Event' : item?.status}</td>
 
                             <td>
                               <Dropdown className="tableDropdown">

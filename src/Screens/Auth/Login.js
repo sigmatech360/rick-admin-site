@@ -6,6 +6,8 @@ import "./style.css";
 import { AuthLayout } from "../../Components/Layout/AuthLayout";
 import CustomButton from "../../Components/CustomButton";
 import CustomInput from "../../Components/CustomInput";
+import { Toast } from "react-bootstrap";
+import { toast } from "react-toastify";
 
 const AdminLogin = () => {
   const apiUrl = `${process.env.REACT_APP_BASE_URL}/api/admin/login`;
@@ -44,15 +46,16 @@ const AdminLogin = () => {
         body: formDataMethod,
       });
 
-      if (response.ok) {
-        const responseData = await response.json();
+      const responseData = await response.json();
+      if (responseData.success) {
         localStorage.setItem("login", responseData.data.token);
         console.log("Login Response:", responseData);
         document.querySelector(".loaderBox").classList.add("d-none");
         navigate("/dashboard");
+        toast.success(responseData.message);
       } else {
         document.querySelector(".loaderBox").classList.add("d-none");
-        alert("Invalid Credentials");
+        toast.error("Invalid Credentials");
 
         console.error("Login failed");
       }
