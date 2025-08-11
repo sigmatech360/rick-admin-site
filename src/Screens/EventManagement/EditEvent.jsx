@@ -11,6 +11,7 @@ import {
   faClose,
   faMinusCircle,
   faPlusCircle,
+  faTrash,
 } from "@fortawesome/free-solid-svg-icons";
 import placeholderimage from "../../Assets/images/placeholderimage.png";
 import CustomButton from "../../Components/CustomButton";
@@ -499,13 +500,14 @@ export const EditEvent = () => {
                       </div>
 
                       <div className="variationData">
+                        <h5 className="font-weight-bold">Agenda Boxes</h5>
                         {formData?.agenda?.map &&
                           formData?.agenda?.map((variation, index) => (
                             <div key={variation.id} className="col-md-6">
                               <h6 className="font-weight-bold">
                                 Agenda Box {index + 1}
                               </h6>
-                              <div className="form-controls mb-4 d-flex align-items-center gap-3">
+                              <div className="form-controls d-flex align-items-center gap-3">
                                 <div className="col-md-6 mb4">
                                   <CustomInput
                                     onChange={(e) =>
@@ -516,7 +518,7 @@ export const EditEvent = () => {
                                       )
                                     }
                                     value={variation.time || ""}
-                                    required
+                                    // required
                                     id={`time-${variation.id}`}
                                     type="text"
                                     placeholder="Enter time range (e.g., 6:30 PM - 7:00 PM)"
@@ -535,7 +537,7 @@ export const EditEvent = () => {
                                       )
                                     }
                                     value={variation.title || ""}
-                                    required
+                                    // required
                                     id={`title-${variation.id}`}
                                     type="text"
                                     placeholder="Enter title"
@@ -545,14 +547,6 @@ export const EditEvent = () => {
                                   />
                                 </div>
                                 <div className="d-flex justify-content-end gap-2 mb-3">
-                                  <button
-                                    onClick={handleAddVariation}
-                                    type="button"
-                                    className="btn primaryButton text-white addBtn"
-                                  >
-                                    <FontAwesomeIcon icon={faPlusCircle} />
-                                  </button>
-                                  {formData.agenda.length >= 2 && (
                                     <button
                                       onClick={() =>
                                         handleRemoveVariation(index)
@@ -560,9 +554,10 @@ export const EditEvent = () => {
                                       type="button"
                                       className="btn primaryButton text-white trashBtn"
                                     >
-                                      <FontAwesomeIcon icon={faMinusCircle} />
+                                      <FontAwesomeIcon icon={faTrash} />
                                     </button>
-                                  )}
+                                  {/* {formData.agenda.length >= 2 && (
+                                  )} */}
                                 </div>
                               </div>
                               <div className="row">
@@ -615,6 +610,13 @@ export const EditEvent = () => {
                               </div>
                             </div>
                           ))}
+                        <button
+                          onClick={handleAddVariation}
+                          type="button"
+                          className="btn primaryButton mb-4 text-white addBtn"
+                        >
+                          <FontAwesomeIcon icon={faPlusCircle} /> Add Agenda Box 
+                        </button>
                       </div>
 
                       <div className="col-md-12 mb-4">

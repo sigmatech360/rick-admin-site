@@ -3,18 +3,16 @@ import { DashboardLayout } from "../../Components/Layout/DashboardLayout";
 import BackButton from "../../Components/BackButton";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faMinusCircle, faPlusCircle } from "@fortawesome/free-solid-svg-icons";
+import { faMinusCircle, faPlusCircle, faTrash } from "@fortawesome/free-solid-svg-icons";
 import CustomModal from "../../Components/CustomModal";
 import CustomInput from "../../Components/CustomInput";
 
-import placeholderimage from '../../Assets/images/placeholderimage.png'
+import placeholderimage from "../../Assets/images/placeholderimage.png";
 import RichTextEditor from "react-rte";
 
 import CustomButton from "../../Components/CustomButton";
 import { useNavigate } from "react-router";
 export const AddEvent = () => {
-
-
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
     image: "", // Initialize image as an empty string
@@ -22,12 +20,8 @@ export const AddEvent = () => {
   });
 
   const [selectedItems, setSelectedItems] = useState({});
-  const [agenda, setAgenda] = useState([{
-    // id: Date.now(),
-    time: "",
-    title: "",
-    items: [],
-  }]);
+  const [agenda, setAgenda] = useState([
+  ]);
 
   const handleAddVariation = () => {
     const newVariation = {
@@ -72,7 +66,6 @@ export const AddEvent = () => {
     });
   };
 
-
   const handleSelectedItem = (variationId, itemId) => {
     setSelectedItems((prevSelected) => {
       const updatedSelected = { ...prevSelected };
@@ -86,11 +79,7 @@ export const AddEvent = () => {
     });
   };
 
-
-
   const apiUrl = process.env.REACT_APP_BASE_URL;
-
-
 
   const [editorValue, setEditorValue] = useState(
     RichTextEditor.createEmptyValue()
@@ -120,13 +109,11 @@ export const AddEvent = () => {
 
       setFormData((prevData) => ({
         ...prevData,
-        image: file,          // Store the actual file for backend upload
-        imageFile: previewURL // Store the preview URL for immediate display
+        image: file, // Store the actual file for backend upload
+        imageFile: previewURL, // Store the preview URL for immediate display
       }));
     }
   };
-
-
 
   useEffect(() => {
     // Cleanup the blob URL to avoid memory leaks
@@ -137,8 +124,7 @@ export const AddEvent = () => {
     };
   }, [formData?.imageFile]);
 
-
-  const [Message, setMessage] = useState("")
+  const [Message, setMessage] = useState("");
   const LogoutData = localStorage.getItem("login");
 
   const handleSubmit = (event) => {
@@ -147,8 +133,7 @@ export const AddEvent = () => {
     const formDataMethod = new FormData();
 
     for (const key in formData) {
-      if (key === 'agenda') {
-
+      if (key === "agenda") {
         formDataMethod.append(key, JSON.stringify(formData[key]));
       } else {
         formDataMethod.append(key, formData[key]);
@@ -174,9 +159,8 @@ export const AddEvent = () => {
         console.log(data);
         if (data?.status == true) {
           setShowModal(true);
-          setMessage(data?.message)
+          setMessage(data?.message);
         }
-
       })
       .catch((error) => {
         document.querySelector(".loaderBox").classList.add("d-none");
@@ -184,20 +168,15 @@ export const AddEvent = () => {
       });
   };
 
-
-
-
   const handlecheck = (event) => {
     const { name, value } = event.target;
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: Number(value) // Update the specific field dynamically and ensure the value is numeric
+      [name]: Number(value), // Update the specific field dynamically and ensure the value is numeric
     }));
-
   };
-  const navigate = useNavigate()
-
+  const navigate = useNavigate();
 
   return (
     <>
@@ -260,8 +239,6 @@ export const AddEvent = () => {
                           onChange={handleChange}
                         />
                       </div>
-
-
 
                       <div className="col-md-6 mb-4">
                         <CustomInput
@@ -374,15 +351,24 @@ export const AddEvent = () => {
                       </div>
 
                       <div className="variationData col-md-6">
+                        <h5 className="font-weight-bold">Agenda Boxes</h5>
                         {agenda.map((variation, index, agenda) => (
                           <div key={variation.id} className="">
-                            <h6 className="font-weight-bold">Agenda Box {index + 1}</h6>
-                            <div className="form-controls mb-4 d-flex align-items-center gap-3">
+                            <h6 className="font-weight-bold">
+                              Agenda Box {index + 1}
+                            </h6>
+                            <div className="form-controls  d-flex align-items-start gap-3">
                               <div className="col-md- ">
                                 <CustomInput
-                                  onChange={(e) => handleVariationChange("time", e.target.value, index)}
+                                  onChange={(e) =>
+                                    handleVariationChange(
+                                      "time",
+                                      e.target.value,
+                                      index
+                                    )
+                                  }
                                   value={variation.time || ""}
-                                  required
+                                  // required
                                   id={`time-${variation.id}`}
                                   type="text"
                                   placeholder="Enter time range (e.g., 6:30 PM - 7:00 PM)"
@@ -393,9 +379,15 @@ export const AddEvent = () => {
                               </div>
                               <div className="col-md- ">
                                 <CustomInput
-                                  onChange={(e) => handleVariationChange("title", e.target.value, index)}
+                                  onChange={(e) =>
+                                    handleVariationChange(
+                                      "title",
+                                      e.target.value,
+                                      index
+                                    )
+                                  }
                                   value={variation.title || ""}
-                                  required
+                                  // required
                                   id={`title-${variation.id}`}
                                   type="text"
                                   placeholder="Enter title"
@@ -405,48 +397,58 @@ export const AddEvent = () => {
                                 />
                               </div>
                               <div className="d-flex justify-content-end gap-2">
-                                <button
-                                  onClick={handleAddVariation}
-                                  type="button"
-                                  className="btn primaryButton text-white addBtn"
-                                >
-                                  <FontAwesomeIcon icon={faPlusCircle} />
-                                </button>
-                                {agenda.length > 1 && (
-
+                                
                                   <button
-                                  onClick={() => handleRemoveVariation(index)}
-                                  type="button"
-                                  className="btn primaryButton text-white trashBtn"
+                                    onClick={() => handleRemoveVariation(index)}
+                                    type="button"
+                                    className="btn primaryButton text-white trashBtn"
                                   >
-                                  <FontAwesomeIcon icon={faMinusCircle} />
-                                </button>
-                                )}
+                                    <FontAwesomeIcon icon={faTrash} />
+                                  </button>
+                                
                               </div>
                             </div>
                             <div className="row">
                               {variation.items.map((item) => (
-                                <div key={item.id} className="customDataItem col-md-4 mb-4" >
+                                <div
+                                  key={item.id}
+                                  className="customDataItem col-md-4 mb-4"
+                                >
                                   <div className="checkList">
                                     <input
                                       type="checkbox"
                                       value={item.id}
                                       id={item.id}
                                       name="addons[]"
-                                      onClick={() => handleSelectedItem(variation.id, item.id)}
-                                      checked={selectedItems[variation.id]?.includes(item.id) || false}
+                                      onClick={() =>
+                                        handleSelectedItem(
+                                          variation.id,
+                                          item.id
+                                        )
+                                      }
+                                      checked={
+                                        selectedItems[variation.id]?.includes(
+                                          item.id
+                                        ) || false
+                                      }
                                     />
                                   </div>
                                   <label htmlFor={item.id}>
                                     <div className="productAdonItem">
                                       <div className="productImageIcon">
                                         <img
-                                          src={item.image ? `${apiUrl}/${item.image}` : placeholderimage}
+                                          src={
+                                            item.image
+                                              ? `${apiUrl}/${item.image}`
+                                              : placeholderimage
+                                          }
                                           alt="Product"
                                         />
                                       </div>
                                       <div className="addonDesc">
-                                        <h5 className="text-capitalize">{item.title}</h5>
+                                        <h5 className="text-capitalize">
+                                          {item.title}
+                                        </h5>
                                         <p>{`$ ${item.price}`}</p>
                                       </div>
                                     </div>
@@ -456,6 +458,13 @@ export const AddEvent = () => {
                             </div>
                           </div>
                         ))}
+                        <button
+                          onClick={handleAddVariation}
+                          type="button"
+                          className="btn primaryButton mb-4 text-white addBtn"
+                        >
+                          <FontAwesomeIcon icon={faPlusCircle} /> Add Agenda Box 
+                        </button>
                       </div>
 
                       <div className="col-md-6 mb-4">
@@ -508,7 +517,7 @@ export const AddEvent = () => {
           show={showModal}
           close={() => {
             setShowModal(false);
-            navigate(-1)
+            navigate(-1);
           }}
           success
           heading={Message}
