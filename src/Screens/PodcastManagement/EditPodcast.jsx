@@ -317,7 +317,7 @@ export const EditPodcast = () => {
                                                             type="radio"
                                                             name="show_in_mobile"
                                                             value="1" // Yes = 1
-                                                            checked={formData?.show_in_mobile === 1}
+                                                            checked={formData?.show_in_mobile == 1}
                                                             onChange={handlecheck}
                                                             className="me-1"
                                                         />
@@ -328,7 +328,7 @@ export const EditPodcast = () => {
                                                             type="radio"
                                                             name="show_in_mobile"
                                                             value="0" // No = 0
-                                                            checked={formData?.show_in_mobile === 0}
+                                                            checked={formData?.show_in_mobile == 0}
                                                             onChange={handlecheck}
                                                             className="me-1"
                                                         />
@@ -349,7 +349,7 @@ export const EditPodcast = () => {
                                                             type="radio"
                                                             name="show_in_web"
                                                             value="1" // Yes = 1
-                                                            checked={formData?.show_in_web === 1}
+                                                            checked={formData?.show_in_web == 1}
                                                             onChange={handlecheck}
                                                             className="me-1"
                                                         />
@@ -360,7 +360,7 @@ export const EditPodcast = () => {
                                                             type="radio"
                                                             name="show_in_web"
                                                             value="0" // No = 0
-                                                            checked={formData?.show_in_web === 0}
+                                                            checked={formData?.show_in_web == 0}
                                                             onChange={handlecheck}
                                                             className="me-1"
                                                         />

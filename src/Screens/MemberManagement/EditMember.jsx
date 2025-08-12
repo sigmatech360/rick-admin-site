@@ -207,6 +207,21 @@ export const EditMember = () => {
                         />
                       </div>
 
+                      <div className="col-md-6 mb-4">
+                        <CustomInput
+                          label="   Email"
+                          required
+                          id="title"
+                          type="text"
+                          placeholder="Enter email"
+                          labelClass="mainLabel"
+                          inputClass="mainInput"
+                          name="email"
+                          value={formData?.email}
+                          onChange={handleChanges}
+                        />
+                      </div>
+
                       <div className="checkBox col-md-6 mb-4">
                         <label className="fw-semibold">Member type</label>
                         <div>
@@ -242,7 +257,7 @@ export const EditMember = () => {
                               type="radio"
                               name="show_in_mobile"
                               value="1" // Yes = 1
-                              checked={formData?.show_in_mobile === 1}
+                              checked={formData?.show_in_mobile == 1}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -253,7 +268,7 @@ export const EditMember = () => {
                               type="radio"
                               name="show_in_mobile"
                               value="0" // No = 0
-                              checked={formData?.show_in_mobile === 0}
+                              checked={formData?.show_in_mobile == 0}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -269,7 +284,7 @@ export const EditMember = () => {
                               type="radio"
                               name="show_in_web"
                               value="1" // Yes = 1
-                              checked={formData?.show_in_web === 1}
+                              checked={formData?.show_in_web == 1}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -280,7 +295,7 @@ export const EditMember = () => {
                               type="radio"
                               name="show_in_web"
                               value="0" // No = 0
-                              checked={formData?.show_in_web === 0}
+                              checked={formData?.show_in_web == 0}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -289,20 +304,7 @@ export const EditMember = () => {
                         </div>
                       </div>
 
-                      <div className="col-md-6 mb-4">
-                        <CustomInput
-                          label="   Email"
-                          required
-                          id="title"
-                          type="text"
-                          placeholder="Enter email"
-                          labelClass="mainLabel"
-                          inputClass="mainInput"
-                          name="email"
-                          value={formData?.email}
-                          onChange={handleChanges}
-                        />
-                      </div>
+                      
                       <div className="col-md-6 mb-4">
                         <CustomInput
                           label=" Member Designation"

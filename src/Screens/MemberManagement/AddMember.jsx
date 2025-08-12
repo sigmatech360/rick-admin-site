@@ -198,7 +198,20 @@ export const AddMember = () => {
                       </div>
 
 
-
+                      <div className="col-md-6 mb-4">
+                        <CustomInput
+                          label="   Email"
+                          required
+                          id="title"
+                          type="text"
+                          placeholder="Enter email"
+                          labelClass="mainLabel"
+                          inputClass="mainInput"
+                          name="email"
+                          value={formData?.email}
+                          onChange={handleChanges}
+                        />
+                      </div>
 
                       <div className="checkBox col-md-6 mb-4">
                         <label className="fw-semibold">Member type</label>
@@ -286,20 +299,7 @@ export const AddMember = () => {
                         </div>
                       </div>
 
-                      <div className="col-md-6 mb-4">
-                        <CustomInput
-                          label="   Email"
-                          required
-                          id="title"
-                          type="text"
-                          placeholder="Enter email"
-                          labelClass="mainLabel"
-                          inputClass="mainInput"
-                          name="email"
-                          value={formData?.email}
-                          onChange={handleChanges}
-                        />
-                      </div>
+                      
                       <div className="col-md-6 mb-4">
                         <CustomInput
                           label=" Member Designation"
