@@ -52,7 +52,7 @@ export const ProjectManagement = () => {
   };
 
   const hanldeRoute = () => {
-    navigate('/add-project')
+    navigate('/project-management/add-project')
   }
 
 

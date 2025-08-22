@@ -57,9 +57,12 @@ export const SelectBox = (props) => {
 
     return (
         <div className="inputWrapper">
+            {props?.iconShow && (
             <div className="inputIcon">
                 <FontAwesomeIcon icon={props?.iconShow} />
             </div>
+
+            )}
             {props?.label && (
                 <label htmlFor={props?.id} className={props?.labelClass}>
                     {props?.label}{props?.required ? '*' : ''}

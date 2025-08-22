@@ -8,13 +8,13 @@ import CustomButton from "../../Components/CustomButton";
 import CustomInput from "../../Components/CustomInput";
 import { Toast } from "react-bootstrap";
 import { toast } from "react-toastify";
+import { useProfileData } from "../../context/UserProfileContext";
+import { allSidebarNavlinks } from "../../Components/Layout/Sidebar/MenuLinks";
 
 const AdminLogin = () => {
+  const { updateUserProfile } = useProfileData();
   const apiUrl = `${process.env.REACT_APP_BASE_URL}/api/admin/login`;
 
-
-
-  console.log("apiUrl" ,apiUrl)
   const navigate = useNavigate();
 
   const [formData, setFormData] = useState({
@@ -22,10 +22,21 @@ const AdminLogin = () => {
     password: "",
   });
 
-  console.log(formData.password);
-
   useEffect(() => {
     document.title = "Project Camp | Login";
+    let login = localStorage.getItem("login");
+    if (login) {
+      let role = localStorage.getItem("role");
+      if (role == 1) {
+        navigate("/dashboard");
+      } else {
+        let permissions = localStorage.getItem("permissions");
+        const filteredNavlinks = allSidebarNavlinks.filter((item) =>
+          permissions?.includes(String(item.id))
+        );
+        navigate(filteredNavlinks[0]?.link);
+      }
+    }
   }, []);
 
   const handleSubmit = async (event) => {
@@ -49,9 +60,21 @@ const AdminLogin = () => {
       const responseData = await response.json();
       if (responseData.success) {
         localStorage.setItem("login", responseData.data.token);
+        localStorage.setItem("role", responseData.data?.user?.user_role);
         console.log("Login Response:", responseData);
         document.querySelector(".loaderBox").classList.add("d-none");
-        navigate("/dashboard");
+        if (responseData?.data?.user?.user_role == 1) {
+          navigate("/dashboard");
+        } else {
+          let permissionsData = responseData.data?.user?.permission;
+          const filteredNavlinks = allSidebarNavlinks.filter((item) =>
+            permissionsData?.includes(String(item.id))
+          );
+          localStorage.setItem("permissions",permissionsData)
+
+          navigate(filteredNavlinks[0].link);
+          updateUserProfile();
+        }
         toast.success(responseData.message);
       } else {
         document.querySelector(".loaderBox").classList.add("d-none");
@@ -63,8 +86,6 @@ const AdminLogin = () => {
       document.querySelector(".loaderBox").classList.add("d-none");
       console.error("Error:", error);
     }
-
-    
   };
 
   return (
@@ -81,7 +102,6 @@ const AdminLogin = () => {
             inputClass="mainInput"
             onChange={(event) => {
               setFormData({ ...formData, email: event.target.value });
-              console.log(event.target.value);
             }}
           />
           <CustomInput
@@ -94,7 +114,6 @@ const AdminLogin = () => {
             inputClass="mainInput"
             onChange={(event) => {
               setFormData({ ...formData, password: event.target.value });
-              console.log(event.target.value);
             }}
           />
           {/* <div className="d-flex align-items-baseline justify-content-between mt-1">

@@ -87,8 +87,12 @@ const Profile = () => {
                                                 <p className="secondaryText">{userData.name}</p>
                                             </div>
                                             <div className="col-lg-6 mb-3">
-                                                <h4 className="secondaryLabel">Full Name</h4>
+                                                <h4 className="secondaryLabel">Email</h4>
                                                 <p className="secondaryText">{userData.email}</p>
+                                            </div>
+                                            <div className="col-lg-6 mb-3">
+                                                <h4 className="secondaryLabel">Phone</h4>
+                                                <p className="secondaryText">{userData.phone}</p>
                                             </div>
 
 

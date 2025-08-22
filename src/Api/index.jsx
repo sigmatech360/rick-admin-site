@@ -17,7 +17,7 @@ export const useApi = (endpoint) => {
     async function fetchData() {
       document.querySelector('.loaderBox').classList.remove("d-none");
       try {
-        const response = await fetch(base_url + endpoint, {
+        const response = await fetch(base_url+ '/api/' + endpoint, {
           method: 'GET',
           headers: {
             'Accept': 'application/json',

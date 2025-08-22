@@ -76,32 +76,34 @@ useEffect(()=>{
     const LogoutData = localStorage.getItem('login');
     document.querySelector('.loaderBox').classList.remove("d-none");
 
-
-    const url = inputValues?.event_id ? `${apiUrl}/api/admin/event/interested-volunteer/${inputValues?.event_id}` : ``
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        'Accept': 'application/json',
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${LogoutData}`
-      },
-    }
-    )
-
-      .then(response =>
-        response.json()
+    if(inputValues?.event_id ){
+      const url = `${apiUrl}/api/admin/event/interested-volunteer/${inputValues?.event_id}`;
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${LogoutData}`
+        },
+      }
       )
-      .then((data) => {
-        console.log(data?.data)
-        document.querySelector('.loaderBox').classList.add("d-none");
-        setData(data?.data);
-        setCurrentItems(data?.data?.slice(0, 8));
-        setAssignStatus(data?.data?.map(item=>({id:item?.id,status:item?.status})))
-      })
-      .catch((error) => {
-        document.querySelector('.loaderBox').classList.add("d-none");
-        console.log(error)
-      })
+  
+        .then(response =>
+          response.json()
+        )
+        .then((data) => {
+          console.log(data?.data)
+          document.querySelector('.loaderBox').classList.add("d-none");
+          setData(data?.data);
+          setCurrentItems(data?.data?.slice(0, 8));
+          setAssignStatus(data?.data?.map(item=>({id:item?.id,status:item?.status})))
+        })
+        .catch((error) => {
+          document.querySelector('.loaderBox').classList.add("d-none");
+          console.log(error)
+        })
+
+    }
 
   }
 

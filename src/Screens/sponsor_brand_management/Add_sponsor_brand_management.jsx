@@ -157,7 +157,7 @@ export const Addsponsor_brand_manage = () => {
                         <div className="col-12 mb-2">
                             <h2 className="mainTitle">
                                 <BackButton />
-                                Add  Brands
+                                Add Brands
                             </h2>
                         </div>
                     </div>
@@ -165,7 +165,7 @@ export const Addsponsor_brand_manage = () => {
                         <div className="col-12">
                             <form onSubmit={handleSubmit}>
                                 <div className="row">
-                                    <div className="col-lg-12">
+                                    <div className="col-lg-6">
                                         <div className="row">
                                             {/* <div className="col-md-6 mb-4">
                                                 <CustomInput
@@ -183,7 +183,7 @@ export const Addsponsor_brand_manage = () => {
                                             </div> */}
 
 
-                                            <div className="col-md-6 mb-4">
+                                            <div className="col-md-12 mb-4">
                                                 <CustomInput
                                                     label="Upload Brand Image"
                                                     id="file"
@@ -206,16 +206,6 @@ export const Addsponsor_brand_manage = () => {
                                                     />
                                                 )}
                                             </div>
-
-
-
-
-  
-
-
-
-
-
                                             <div className="checkBox col-md-6 mb-4">
                                                 <label className="fw-semibold">Show in Mobile</label>
                                                 <div>

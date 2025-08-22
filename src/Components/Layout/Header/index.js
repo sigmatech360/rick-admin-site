@@ -17,6 +17,7 @@ import {
 import { notifications } from "../../../Config/Data";
 
 import "./style.css";
+import { useProfileData } from "../../../context/UserProfileContext";
 
 
 export const Header = (props) => {
@@ -38,7 +39,7 @@ export const Header = (props) => {
 
   const handleRedirect = () => {
     const LogoutData = localStorage.getItem('login');
-    fetch(`https://custom.mystagingserver.site/Tim-WDLLC/public/api/logout`,
+    fetch(`${apiUrl}/api/logout`,
       {
         method: 'POST',
         headers: {
@@ -54,6 +55,8 @@ export const Header = (props) => {
       .then((data) => {
         console.log(data)
         localStorage.removeItem('login');
+        localStorage.removeItem('permissions');
+        localStorage.removeItem('role');
         navigate('/');
       })
       .catch((error) => {
@@ -70,38 +73,40 @@ export const Header = (props) => {
   }, [])
 
 
-  const [userData, setUserData] = useState()
+  // const [userData, setUserData] = useState()
+  const { userData, updateUserProfile }=useProfileData();
 
 
-  const PrfileDetail = () => {
-    const LogoutData = localStorage.getItem("login");
-    document.querySelector(".loaderBox").classList.remove("d-none");
-    fetch(`${apiUrl}/api/admin/profile`, {
-      method: "GET",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${LogoutData}`,
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data?.data);
-        document.querySelector(".loaderBox").classList.add("d-none");
-        setUserData(data?.data);
-      })
-      .catch((error) => {
-        document.querySelector(".loaderBox").classList.add("d-none");
-        console.log(error);
-      });
-  };
+  // const PrfileDetail = () => {
+  //   const LogoutData = localStorage.getItem("login");
+  //   document.querySelector(".loaderBox").classList.remove("d-none");
+  //   fetch(`${apiUrl}/api/admin/profile`, {
+  //     method: "GET",
+  //     headers: {
+  //       Accept: "application/json",
+  //       "Content-Type": "application/json",
+  //       Authorization: `Bearer ${LogoutData}`,
+  //     },
+  //   })
+  //     .then((response) => response.json())
+  //     .then((data) => {
+  //       console.log(data?.data);
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       setUserData(data?.data);
+  //     })
+  //     .catch((error) => {
+  //       document.querySelector(".loaderBox").classList.add("d-none");
+  //       console.log(error);
+  //     });
+  // };
 
 
 
 
   // console.log("userData", userData?.image)
   useEffect(() => {
-    PrfileDetail()
+    // PrfileDetail()
+    updateUserProfile();
   }, [])
   return (
     <header>
@@ -158,11 +163,16 @@ export const Header = (props) => {
                   className="notButton toggleButton"
                 >
                   <div className="userImage">
-                    <img
-                      src={`${apiUrl}/${userData?.image}`}
-                    alt=""
-                    className="img-fluid"
-                    />
+                    {userData?.image ? (
+                      <img
+                        src={`${apiUrl}/${userData?.image}`}
+                      alt=""
+                      className="img-fluid"
+                      />
+
+                    ):(
+                      <strong className="m-0">{userData?.name?.slice(0,1)}</strong>
+                    )}
                   </div>
                   {/* <img src={images.profilePic} alt="" className="img-fluid" /> */}
                 </Dropdown.Toggle>

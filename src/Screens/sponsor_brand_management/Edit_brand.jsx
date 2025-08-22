@@ -122,7 +122,7 @@ export const EditBrand = () => {
 
         document.querySelector('.loaderBox').classList.remove("d-none");
         // Make the fetch request
-        fetch(`${apiUrl}/api/admin/project/update/${id}`, {
+        fetch(`${apiUrl}/api/admin/sponsor-brands/${id}`, {
             method: 'POST',
             headers: {
                 'Accept': 'application/json',

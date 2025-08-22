@@ -289,10 +289,10 @@ export const TopVolunteerManagement = () => {
 
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
+                                    className="tableAction"
                                     onClick={() => handleTop(item?.id)}
                                   >
-                                    {"RemoveTop Volunteer"}
+                                    {"Remove from Top Volunteer"}
 
 
                                   </button>

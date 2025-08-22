@@ -120,16 +120,16 @@ export const EventDetail = () => {
                     <h5 className="secondaryText"> End time</h5>
                     <p className="text-capitalize mb-4">{data?.End_time ? data.End_time : "Not Available"}</p>
 
-                    <h5 className="secondaryText"> Short Description</h5>
+                    <h5 className="secondaryText">  Description</h5>
                     <p
                       className="mb-4"
-                      dangerouslySetInnerHTML={{ __html: data?.short_description || "No description available" }}
+                      dangerouslySetInnerHTML={{ __html: data?.description || "No description available" }}
                     ></p>
-                    <h5 className="secondaryText">Long Description</h5>
+                    {/* <h5 className="secondaryText">Long Description</h5>
                     <p
                       className="mb-4"
                       dangerouslySetInnerHTML={{ __html: data?.long_description || "No description available" }}
-                    ></p>
+                    ></p> */}
 
 
 

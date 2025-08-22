@@ -14,7 +14,7 @@
 }
 
 input[type="checkbox"] {
-    accent-color: #d71201;
+    accent-color: var(--primaryColor);
 }
 
 .mainInput {

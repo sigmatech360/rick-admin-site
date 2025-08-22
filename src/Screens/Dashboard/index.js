@@ -24,11 +24,11 @@ export const Dashboard = () => {
   const [events, setEvents] = useState('');
   const [programs, setPrograms] = useState('');
   const [sponsors, setSponsors] = useState('');
-  const { apiData: leadsAmountData, loading: dataLoading } = useApi('admin/leads-amount');
-  const { apiData: leadsAmountMonthlyData, loading: leadLoading} = useApi('admin/leads-amount-monthly');
-  const { apiData: leadsAmountReceivedData, loading: receivedLoading} = useApi('admin/leads-amount-received');
-  const { apiData: leadsAmountReceivedMonthlyData, loading: AmountLoading } = useApi('admin/leads-amount-received-monthly');
-  const { apiData: volunteerData, loading: volunteerLoading } = useApi('admin/volunteer');
+  // const { apiData: leadsAmountData, loading: dataLoading } = useApi('admin/leads-amount');
+  // const { apiData: leadsAmountMonthlyData, loading: leadLoading} = useApi('admin/leads-amount-monthly');
+  // const { apiData: leadsAmountReceivedData, loading: receivedLoading} = useApi('admin/leads-amount-received');
+  // const { apiData: leadsAmountReceivedMonthlyData, loading: AmountLoading } = useApi('admin/leads-amount-received-monthly');
+  // const { apiData: volunteerData, loading: volunteerLoading } = useApi('admin/volunteer');
 
   const  fetchVolunteers = (LogoutData) =>{
     let url = `${process.env.REACT_APP_BASE_URL}/api/admin/volunteer`
@@ -41,7 +41,6 @@ export const Dashboard = () => {
         },
       }).then(res => res.json())
       .then((data)=>{
-        console.log(data.data);
         setVolunteers(data?.data)
       }).catch((error)=>{
         console.log('Error in fetching Error' , error);
@@ -61,7 +60,6 @@ export const Dashboard = () => {
         },
       }).then(res => res.json())
       .then((data)=>{
-        console.log(data.data);
         setEvents(data?.data)
       }).catch((error)=>{
         console.log('Error in fetching Error' , error);
@@ -80,7 +78,6 @@ export const Dashboard = () => {
         },
       }).then(res => res.json())
       .then((data)=>{
-        console.log(data.data);
         setPrograms(data?.data)
       }).catch((error)=>{
         console.log('Error in fetching Error' , error);
@@ -99,7 +96,6 @@ export const Dashboard = () => {
         },
       }).then(res => res.json())
       .then((data)=>{
-        console.log(data.data);
         setSponsors(data?.data)
       }).catch((error)=>{
         console.log('Error in fetching Error' , error);
@@ -126,18 +122,17 @@ export const Dashboard = () => {
   }, []);
 
 
-  useEffect(() => {
-    setData(leadsAmountData)
-    setLead(leadsAmountMonthlyData)
-    setReceived(leadsAmountReceivedData)
-    setAmount(leadsAmountReceivedMonthlyData)
-    setVolunteers(volunteerData);
+  // useEffect(() => {
+  //   // setData(leadsAmountData)
+  //   // setLead(leadsAmountMonthlyData)
+  //   // setReceived(leadsAmountReceivedData)
+  //   // setAmount(leadsAmountReceivedMonthlyData)
+  //   // setVolunteers(volunteerData);
     
 
-  }, [leadsAmountData, leadsAmountMonthlyData, leadsAmountReceivedData, leadsAmountReceivedMonthlyData, volunteerData])
+  // }, [ volunteerData])
   const [chartData, setChartData] = useState({});
   useEffect(() => {
-    console.log('volunteers',volunteers);
     const dateCounts = {};
     if(volunteers.length > 0){
 

@@ -12,13 +12,13 @@ export const EditMember = () => {
   const apiUrl = process.env.REACT_APP_BASE_URL;
 
   const [showModal, setShowModal] = useState(false);
-  const [formimage, setFormimage] = useState()
+  const [formimage, setFormimage] = useState();
   const [value, setValue] = useState(RichTextEditor.createEmptyValue());
   const [valuelong, setValuelong] = useState(RichTextEditor.createEmptyValue());
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [formData, setFormData] = useState({
     image: "", // Initialize image as an empty string
-    agenda: []
+    agenda: [],
   });
   const handleChange = (newValue) => {
     setValue(newValue);
@@ -86,11 +86,6 @@ export const EditMember = () => {
     console.log(formData);
   };
 
-
-
-
-
-
   const filehandleChange = (event) => {
     const file = event.target.files[0];
 
@@ -99,8 +94,8 @@ export const EditMember = () => {
 
       setFormData((prevData) => ({
         ...prevData,
-        image: file,          // Store the actual file for backend upload
-        imageFile: previewURL // Store the preview URL for immediate display
+        image: file, // Store the actual file for backend upload
+        imageFile: previewURL, // Store the preview URL for immediate display
       }));
     }
   };
@@ -113,7 +108,15 @@ export const EditMember = () => {
     // You might want to send raw JSON, not FormData
     const formDataMethod = new FormData();
     for (const key in formData) {
-      formDataMethod.append(key, formData[key]);
+      if (formData[key]) {
+        if (key == "email") {
+          if (formData[key] != "") {
+            formDataMethod.append(key, formData[key]);
+          }
+        } else {
+          formDataMethod.append(key, formData[key]);
+        }
+      }
     }
 
     document.querySelector(".loaderBox").classList.remove("d-none");
@@ -148,7 +151,7 @@ export const EditMember = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: Number(value) // Update the specific field dynamically and ensure the value is numeric
+      [name]: Number(value), // Update the specific field dynamically and ensure the value is numeric
     }));
   };
   useEffect(() => {
@@ -195,7 +198,6 @@ export const EditMember = () => {
                       <div className="col-md-6 mb-4">
                         <CustomInput
                           label=" Phone Number"
-                           
                           id="title"
                           type="text"
                           placeholder="Enter number"
@@ -210,7 +212,6 @@ export const EditMember = () => {
                       <div className="col-md-6 mb-4">
                         <CustomInput
                           label="   Email"
-                          required
                           id="title"
                           type="text"
                           placeholder="Enter email"
@@ -230,7 +231,7 @@ export const EditMember = () => {
                               type="radio"
                               name="member_type"
                               value="1" // Yes = 1
-                              checked={formData?.member_type == '1'}
+                              checked={formData?.member_type == "1"}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -241,7 +242,7 @@ export const EditMember = () => {
                               type="radio"
                               name="member_type"
                               value="2" // No = 0
-                              checked={formData?.member_type == '2'}
+                              checked={formData?.member_type == "2"}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -304,7 +305,6 @@ export const EditMember = () => {
                         </div>
                       </div>
 
-                      
                       <div className="col-md-6 mb-4">
                         <CustomInput
                           label=" Member Designation"
@@ -318,15 +318,11 @@ export const EditMember = () => {
                           value={formData?.designation}
                           onChange={handleChanges}
                         />
-
-
                       </div>
-
-
 
                       <div className="col-md-6 mb-4">
                         <CustomInput
-                          label="Upload Product Image"
+                          label="Upload Member Image"
                           id="file"
                           type="file"
                           labelClass="mainLabel"
@@ -348,7 +344,6 @@ export const EditMember = () => {
                         )}
                       </div>
 
-
                       <div className="col-md-12">
                         <CustomButton
                           variant="primaryButton"
@@ -368,7 +363,7 @@ export const EditMember = () => {
           show={showModal}
           close={() => {
             setShowModal(false);
-            navigate(-1)
+            navigate(-1);
           }}
           success
           heading={message?.message}

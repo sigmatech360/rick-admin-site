@@ -14,7 +14,6 @@ export const AddMember = () => {
   const [unit, setUnit] = useState({});
   const [showModal, setShowModal] = useState(false);
   const [formData, setFormData] = useState({
-    image: "",
     is_hidden: 0,
   });
   const apiUrl = process.env.REACT_APP_BASE_URL;
@@ -40,7 +39,16 @@ export const AddMember = () => {
     // Create a new FormData object
     const formDataMethod = new FormData();
     for (const key in formData) {
-      formDataMethod.append(key, formData[key]);
+      if(key == 'email'){
+        if(formData[key] != ''){
+          formDataMethod.append(key, formData[key]);
+
+        }
+      }
+      else{
+        formDataMethod.append(key, formData[key]);
+
+      }
     }
 
 
@@ -201,7 +209,6 @@ export const AddMember = () => {
                       <div className="col-md-6 mb-4">
                         <CustomInput
                           label="   Email"
-                          required
                           id="title"
                           type="text"
                           placeholder="Enter email"
@@ -321,9 +328,8 @@ export const AddMember = () => {
 
                       <div className="col-md-6 mb-4">
                         <CustomInput
-                          label="Upload Product Image"
+                          label="Upload Member Image"
                           id="file"
-                          required
                           type="file"
                           labelClass="mainLabel"
                           inputClass="mainInput"

@@ -67,7 +67,7 @@ export const AnnouncementManagement = () => {
   };
 
   const hanldeRoute = () => {
-    navigate("/add-announcement");
+    navigate("/announcement-management/add-announcement");
   };
 
   const inActive = () => {

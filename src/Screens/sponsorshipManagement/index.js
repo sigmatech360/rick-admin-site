@@ -39,7 +39,7 @@ SponsorshipManagement = () => {
   };
 
   const hanldeRoute = () => {
-    navigate('/add-user')
+    navigate('/user-management//add-user')
   }
 
 

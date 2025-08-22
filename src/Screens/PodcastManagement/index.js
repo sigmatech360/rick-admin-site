@@ -54,7 +54,7 @@ export const PodcastManagement = () => {
   };
 
   const hanldeRoute = () => {
-    navigate('/add-podcast')
+    navigate('/podcast-management/add-podcast')
   }
 
 

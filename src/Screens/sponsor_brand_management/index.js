@@ -38,7 +38,7 @@ export const BrandManagement = () => {
   };
 
   const hanldeRoute = () => {
-    navigate('/add-brand')
+    navigate('/brand-management/add-brand')
   }
 
 
@@ -220,9 +220,10 @@ export const BrandManagement = () => {
                                   <FontAwesomeIcon icon={faEllipsisV} />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu align="end" className="tableDropdownMenu">
+                                  <Link to={`/brand-management/brand-detail/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1"
+                                    className="tableAction"
                                     onClick={() => handledelete(item?.id)}
                                   >
                                     <FontAwesomeIcon
@@ -230,8 +231,7 @@ export const BrandManagement = () => {
                                     ></FontAwesomeIcon>{" "}
                                     Delete
                                   </button>
-                                  {/* <Link to={`/brand-management/brand-detail/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
-                                  <Link to={`/brand-management/edit-brand/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEdit} className="tableActionIcon" />Edit</Link> */}
+                                  {/* <Link to={`/brand-management/edit-brand/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEdit} className="tableActionIcon" />Edit</Link> */}
 
                                 </Dropdown.Menu>
                               </Dropdown>

@@ -63,7 +63,6 @@ export const VolunteerManagement = () => {
   const [tableData, setTableData] = useState();
   const [currentItems, setCurrentItems] = useState();
   useEffect(()=>{
-    console.log('inputValue : ', inputValue, inputValue.length);
     
     const filterData = tableData?.filter(item => item?.name?.toLowerCase().includes(inputValue.toLowerCase()));
     
@@ -102,7 +101,6 @@ export const VolunteerManagement = () => {
         response.json()
       )
       .then((data) => {
-        console.log(data?.data)
         document.querySelector('.loaderBox').classList.add("d-none");
         setData(data?.data);
         setTableData(data?.data)
@@ -201,7 +199,6 @@ export const VolunteerManagement = () => {
         response.json()
       )
       .then((data) => {
-        console.log("Event list",data?.data)
         document.querySelector('.loaderBox').classList.add("d-none");
         setEventlist(data?.data);
       })
@@ -459,28 +456,29 @@ export const VolunteerManagement = () => {
 
 
                                   {/* <Link to={`/volunteer-management/volunteer-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faTrash} className="tableActionIcon" />Delete</Link> */}
-                                  {item?.is_top !== undefined ? (<button
+                                  {item?.is_top !== undefined && (<button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
+                                    className="tableAction"
                                     onClick={() => Volusteeractiveinactive(item?.id)}
                                   >
                                     {item?.is_active == 1 ? <FontAwesomeIcon
-                                      icon={faUserSlash}
+                                      icon={faUserSlash} className="me-2"
                                     ></FontAwesomeIcon> : <FontAwesomeIcon
-                                      icon={faUser}
+                                      icon={faUser} className="me-2"
                                     ></FontAwesomeIcon>}
 
                                     {item?.is_active == 1 ? 'Inactive' : "Active"}
-                                  </button>) : ""}
+                                  </button>)}
 
+                                      {item?.status && (
 
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
+                                    className="tableAction"
                                     onClick={() => handleAssign(item?.id, item?.status)}
                                   >
 
-                                    {item?.status ? (
+                                    {  
                                       item.status === "Assigned" ? (
                                         <>
                                           <FontAwesomeIcon icon={faUserTimes} /> Unassigned
@@ -490,22 +488,21 @@ export const VolunteerManagement = () => {
                                           <FontAwesomeIcon icon={faTasks} /> Assigned
                                         </>
                                       )
-                                    ) : (
-                                      ""
-                                    )}
+                                    }
 
                                     {/* {item?.status ? (item.status === "Assigned" ? "Unassigned" : "Assigned") : ""} */}
 
 
 
                                   </button>
+                                      )}
 
 
 
 
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1 d-flex gap-2  justify-content-center align-items-center"
+                                    className="tableAction"
                                     onClick={() => handleTop(item?.id,item?.is_top)}
                                   >
                                     {item?.is_top ? "Already added to Top Volunteer" : "Add to Top Volunteer"}

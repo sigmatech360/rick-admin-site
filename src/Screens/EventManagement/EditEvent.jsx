@@ -127,8 +127,8 @@ export const EditEvent = () => {
 
   function formatToDateInput(dateStr) {
     // Remove "st", "nd", "rd", "th" from the day
-    const cleaned = dateStr.replace(/(\d+)(st|nd|rd|th)/, "$1");
-    const dateObj = new Date(cleaned);
+    // const cleaned = dateStr.replace(/(\d+)(st|nd|rd|th)/, "$1");
+    const dateObj = new Date(dateStr);
 
     if (isNaN(dateObj)) return ""; // return empty string if invalid
 
@@ -198,12 +198,14 @@ export const EditEvent = () => {
     // else if (name === "date") {
     //   newValue = formatToReadableDate(value); // "March 26th, 2025"
     // }
+    if (name === "date"){
+      console.log(name, value);
+      
+    }
     setFormData((prevData) => ({
       ...prevData,
       [name]: newValue,
     }));
-    console.log(name, newValue);
-    console.log(formData);
   };
 
   const filehandleChange = (event) => {
@@ -360,7 +362,7 @@ export const EditEvent = () => {
                           name="date"
                           value={
                             formData?.date
-                              ? formatToDateInput(formData.date)
+                              ? formData.date
                               : ""
                           }
                           onChange={handleChange}

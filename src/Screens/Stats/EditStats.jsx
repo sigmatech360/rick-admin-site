@@ -10,6 +10,7 @@ import CustomButton from '../../Components/CustomButton';
 import CustomModal from '../../Components/CustomModal';
 import moment from 'moment/moment';
 import { useParams } from 'react-router';
+import { toast } from 'react-toastify';
 
 
 export  const EditStats = () => {
@@ -80,6 +81,7 @@ export  const EditStats = () => {
         .then((data) => {
           console.log(data)
           document.querySelector('.loaderBox').classList.add("d-none");
+          toast.success(data?.message);
           // setData(data?.data[0]);
         })
         .catch((error) => {

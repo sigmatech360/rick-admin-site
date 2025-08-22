@@ -76,8 +76,12 @@ import { EventAssignManagement } from "../Screens/EventAssignManagement";
 import { CMSStats } from "../Screens/Stats";
 import { EditStats } from "../Screens/Stats/EditStats";
 import StatsDetail from "../Screens/Stats/StatsDetail";
+import { useProfileData } from "../context/UserProfileContext";
+import { useEffect } from "react";
 
 export default function AdminRouter() {
+  const {updateUserProfile} = useProfileData();
+  useEffect(()=>{updateUserProfile()},[])
   return (
     <BrowserRouter basename="/admin">
       <Routes>
@@ -92,16 +96,17 @@ export default function AdminRouter() {
 
         {/* book routes  */} 
         <Route path="/volunteer-management" element={<ProtectedRoutes Components={VolunteerManagement} />} />
+        <Route path="/volunteer-management/volunteer-details/:id" element={<ProtectedRoutes Components={VoluinteerDetail} />} />
+        
         <Route path="/interested-volunteer-management" element={<ProtectedRoutes Components={EventAssignManagement} />} />
         <Route path="/top-volunteer-management" element={<ProtectedRoutes Components={TopVolunteerManagement} />} />
 
 
 
-        <Route path="/volunteer-management/volunteer-details/:id" element={<ProtectedRoutes Components={VoluinteerDetail} />} />
 
 
         <Route path="/event-management" element={<ProtectedRoutes Components={EventManagement} />} />
-        <Route path="/add-event" element={<ProtectedRoutes Components={AddEvent} />} />
+        <Route path="/event-management/add-event" element={<ProtectedRoutes Components={AddEvent} />} />
         <Route path="/event-management/event-details/:id" element={<ProtectedRoutes Components={EventDetail} />} />
         <Route path="/event-management/edit-event/:id" element={<ProtectedRoutes Components={EditEvent} />} />
 
@@ -111,6 +116,7 @@ export default function AdminRouter() {
 
         <Route path="/create-notification" element={<ProtectedRoutes Components={CreateNotification} />} />
         <Route path="/notification-list" element={<ProtectedRoutes Components={NotificationManagement} />} />
+        
         <Route path="/stats" element={<ProtectedRoutes Components={CMSStats} />} />
         <Route path="/stats/edit-stats/:id" element={<ProtectedRoutes Components={EditStats} />} />
         <Route path="/stats/stats-detail/:id" element={<ProtectedRoutes Components={StatsDetail} />} />
@@ -123,14 +129,14 @@ export default function AdminRouter() {
         <Route path="/programs-management" element={<ProtectedRoutes Components={ProgramManagement} />} />
         {/* <Route path="/programs-management/program-details/:id" element={<ProtectedRoutes Components={ProgramDetail} />} /> */}
         <Route path="/programs-management/program-details/:slug" element={<ProtectedRoutes Components={ProgramDetail} />} />
-        <Route path="/add-program" element={<ProtectedRoutes Components={AddProgram} />} />
+        <Route path="/programs-management/add-program" element={<ProtectedRoutes Components={AddProgram} />} />
         {/* <Route path="/programs-management/program-details/:id" element={<ProtectedRoutes Components={ChapterDetails} />} /> */}
         <Route path="/programs-management/edit-program/:slug" element={<ProtectedRoutes Components={EditProgram} />} />
 
 
         <Route path="/sponsor-program" element={<ProtectedRoutes Components={SponsoredProgram} />} />
         <Route path="/sponsor-program/program-details/:id" element={<ProtectedRoutes Components={SponsorprogramDetail} />} />
-        <Route path="/add-sponsorprogram" element={<ProtectedRoutes Components={AddProgramManagement} />} />
+        <Route path="/sponsor-program/add-sponsorprogram" element={<ProtectedRoutes Components={AddProgramManagement} />} />
         {/* <Route path="/programs-management/program-details/:id" element={<ProtectedRoutes Components={ChapterDetails} />} /> */}
         <Route path="/sponsor-program/edit-program/:id" element={<ProtectedRoutes Components={EditsponsorProgram} />} />
 
@@ -146,17 +152,17 @@ export default function AdminRouter() {
          
         <Route path="/brand-management" element={<ProtectedRoutes Components={BrandManagement} />} />
         <Route path="/brand-management/brand-detail/:id" element={<ProtectedRoutes Components={BrandtDetail} />} />
-        <Route path="/add-brand" element={<ProtectedRoutes Components={Addsponsor_brand_manage} />} />
+        <Route path="/brand-management/add-brand" element={<ProtectedRoutes Components={Addsponsor_brand_manage} />} />
         <Route path="/brand-management/edit-brand/:id" element={<ProtectedRoutes Components={EditBrand} />} />
 
 
         <Route path="/podcast-management" element={<ProtectedRoutes Components={PodcastManagement} />} />
         <Route path="/podcast-management/podcast-detail/:id" element={<ProtectedRoutes Components={PodcastDetail} />} />
-        <Route path="/add-podcast" element={<ProtectedRoutes Components={AddPodcast} />} />
+        <Route path="/podcast-management/add-podcast" element={<ProtectedRoutes Components={AddPodcast} />} />
         <Route path="/podcast-management/edit-podcast/:id" element={<ProtectedRoutes Components={EditPodcast} />} />
 
         <Route path="/announcement-management" element={<ProtectedRoutes Components={AnnouncementManagement} />} />
-        <Route path="/add-announcement" element={<ProtectedRoutes Components={AddAnnouncement} />} />
+        <Route path="/announcement-management/add-announcement" element={<ProtectedRoutes Components={AddAnnouncement} />} />
         <Route path="/announcement-management/announcement-details/:id" element={<ProtectedRoutes Components={AnnouncementDetail} />} />
         <Route path="/announcement-management/edit-announcement/:id" element={<ProtectedRoutes Components={EditAnnouncement} />} />
 
@@ -166,7 +172,7 @@ export default function AdminRouter() {
 
 
         <Route path="/project-management" element={<ProtectedRoutes Components={ProjectManagement} />} />
-        <Route path="/add-project" element={<ProtectedRoutes Components={AddProjectManagement} />} />
+        <Route path="/project-management/add-project" element={<ProtectedRoutes Components={AddProjectManagement} />} />
         <Route path="/project-management/project-details/:id" element={<ProtectedRoutes Components={ProjectmanagementDetail } />} />
         <Route path="/project-management/edit-project/:id" element={<ProtectedRoutes Components={EditProject} />} />
 
@@ -175,7 +181,7 @@ export default function AdminRouter() {
 
 
         <Route path="/member-management" element={<ProtectedRoutes Components={MemberManagement} />} />
-        <Route path="/add-member" element={<ProtectedRoutes Components={AddMember} />} />
+        <Route path="/member-management/add-member" element={<ProtectedRoutes Components={AddMember} />} />
         <Route path="/member-management/member-details/:id" element={<ProtectedRoutes Components={MemberDetail} />} />
         <Route path="/member-management/edit-member/:id" element={<ProtectedRoutes Components={EditMember} />} />
 
@@ -194,9 +200,9 @@ export default function AdminRouter() {
 
         {/* end  */}
         <Route path="/user-management" element={<ProtectedRoutes Components={UserManagement} />} />
-        <Route path="/user-detail/:id" element={<ProtectedRoutes Components={UserDetail} />} />
-        <Route path="/add-user/" element={<ProtectedRoutes Components={AddUser} />} />
-        <Route path="/edit-user/:id" element={<ProtectedRoutes Components={EditUser} />} />
+        <Route path="/user-management/user-detail/:id" element={<ProtectedRoutes Components={UserDetail} />} />
+        <Route path="/user-management/add-user/" element={<ProtectedRoutes Components={AddUser} />} />
+        <Route path="/user-management/edit-user/:id" element={<ProtectedRoutes Components={EditUser} />} />
 
 
         <Route path="/profile" element={<ProtectedRoutes Components={Profile} />} />

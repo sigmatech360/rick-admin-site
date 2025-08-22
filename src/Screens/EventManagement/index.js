@@ -50,7 +50,7 @@ export const EventManagement = () => {
   };
 
   const hanldeRoute = () => {
-    navigate("/add-event");
+    navigate("/event-management/add-event");
   };
 
   const inActive = () => {
@@ -234,7 +234,7 @@ export const EventManagement = () => {
                                   </Link>
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1"
+                                    className="tableAction"
                                     onClick={() => {
                                       handledelete(item?.id);
                                     }}

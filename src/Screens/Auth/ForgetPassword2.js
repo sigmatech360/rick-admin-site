@@ -15,7 +15,7 @@ const ForgetPassword2 = () => {
     const [formData, setFormData] = useState({})
 
     useEffect(() => {
-        document.title = 'Project Camp | Password Recovery';
+        document.title = 'Hisoc Dashboard | Password Recovery';
     }, [])
 
 

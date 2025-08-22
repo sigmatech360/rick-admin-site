@@ -81,7 +81,7 @@ export const BrandtDetail = () => {
                 </div> */}
               </div>
 
-              <div className="row">
+              <div className="row justify-content-center">
 
                 <div className="col-md-6 mb-4">
                   {data?.image && data?.image ? (
@@ -98,19 +98,19 @@ export const BrandtDetail = () => {
                     <h3>No Image Available</h3>
                   )}
                 </div>
-                <div className="col-md-6">
+                {/* <div className="col-md-6">
                   <div className="productInfo">
                   <h3 className="secondaryText">Title </h3>
                     <h3 className="text-capitalize">{data?.title}</h3>
-                    {/* <p className="secondaryText">Date </p>
-                    <p>{data?.date}</p> */}
+                    <p className="secondaryText">Date </p>
+                    <p>{data?.date}</p>
                     <p className="secondaryText">Short description </p>
                     <p>{data?.short_description}</p>
                     <p className="secondaryText">Long description </p>
                     <div dangerouslySetInnerHTML={{ __html: data?.long_description || "<p>Default content here</p>" }} />
 
                   </div>
-                </div>
+                </div> */}
               </div>
             </div>
           </div>

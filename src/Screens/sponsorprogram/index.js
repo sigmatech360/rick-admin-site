@@ -46,7 +46,7 @@ export const SponsoredProgram = () => {
   };
 
   const hanldeRoute = () => {
-    navigate('/add-sponsorprogram')
+    navigate('/sponsor-program/add-sponsorprogram')
   }
 
 

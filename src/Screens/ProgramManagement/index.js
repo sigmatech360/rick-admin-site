@@ -46,7 +46,7 @@ export const ProgramManagement = () => {
   };
 
   const hanldeRoute = () => {
-    navigate('/add-program')
+    navigate('/programs-management/add-program')
   }
 
 
