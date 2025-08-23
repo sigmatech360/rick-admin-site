@@ -17,6 +17,11 @@ import placeholderimage from "../../Assets/images/placeholderimage.png";
 import CustomButton from "../../Components/CustomButton";
 export const EditEvent = () => {
   const { id } = useParams();
+  const [formData, setFormData] = useState({
+    image: null,
+    agenda: [], // Ensure agenda is an array
+    ticketing_button_text: "Get Your Ticket",
+  });
 
   const [editorValue, setEditorValue] = useState(
     RichTextEditor.createEmptyValue()
@@ -29,10 +34,7 @@ export const EditEvent = () => {
     });
   };
   const [showModal, setShowModal] = useState(false);
-  const [formData, setFormData] = useState({
-    image: null,
-    agenda: [], // Ensure agenda is an array
-  });
+  
 
   const [selectedItems, setSelectedItems] = useState({});
 
@@ -368,20 +370,7 @@ export const EditEvent = () => {
                           onChange={handleChange}
                         />
                       </div>
-                      <div className="col-md-6 mb-4">
-                        <CustomInput
-                          label="Event Brite Link"
-                          required
-                          id="name"
-                          type="text"
-                          placeholder="Enter Ticket Link"
-                          labelClass="mainLabel"
-                          inputClass="mainInput"
-                          name="ticketing_link"
-                          value={formData?.ticketing_link}
-                          onChange={handleChange}
-                        />
-                      </div>
+                      
 
                       <div className="col-md-6 mb-4">
                         <CustomInput
@@ -419,6 +408,30 @@ export const EditEvent = () => {
                           }
                           onChange={handleChange}
                         />
+                      </div>
+
+                      <div className="col-md-6 mb-4">
+                        <CustomInput
+                          label="Upload Image"
+                          id="file"
+                          type="file"
+                          labelClass="mainLabel"
+                          inputClass="mainInput"
+                          name="image"
+                          onChange={filehandleChange}
+                        />
+
+                        {(formData?.imageFile || formData?.image) && (
+                          <img
+                            src={
+                              formData?.imageFile?.startsWith("blob:")
+                                ? formData.imageFile
+                                : `${apiUrl}/${formData.image}`
+                            }
+                            className="img-fluid mt-2"
+                            alt="Product"
+                          />
+                        )}
                       </div>
 
                       <div className="checkBox col-md-6 mb-4">
@@ -477,28 +490,35 @@ export const EditEvent = () => {
                         </div>
                       </div>
 
+                      
+
                       <div className="col-md-6 mb-4">
                         <CustomInput
-                          label="Upload Image"
-                          id="file"
-                          type="file"
+                          label="Event Ticket Button Text"
+                          // required
+                          id="name"
+                          type="text"
+                          placeholder="Enter Ticket Button Text"
                           labelClass="mainLabel"
                           inputClass="mainInput"
-                          name="image"
-                          onChange={filehandleChange}
+                          name="ticketing_button_text"
+                          value={formData?.ticketing_button_text}
+                          onChange={handleChange}
                         />
-
-                        {(formData?.imageFile || formData?.image) && (
-                          <img
-                            src={
-                              formData?.imageFile?.startsWith("blob:")
-                                ? formData.imageFile
-                                : `${apiUrl}/${formData.image}`
-                            }
-                            className="img-fluid mt-2"
-                            alt="Product"
-                          />
-                        )}
+                      </div>
+                      <div className="col-md-6 mb-4">
+                        <CustomInput
+                          label="Event Brite Link"
+                          // required
+                          id="name"
+                          type="text"
+                          placeholder="Enter Ticket Link"
+                          labelClass="mainLabel"
+                          inputClass="mainInput"
+                          name="ticketing_link"
+                          value={formData?.ticketing_link}
+                          onChange={handleChange}
+                        />
                       </div>
 
                       <div className="variationData">

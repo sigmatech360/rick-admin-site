@@ -104,6 +104,8 @@ export const EditMember = () => {
   const [message, setMessage] = useState("");
   const handleSubmit = (event) => {
     event.preventDefault();
+    console.log('Submitting form data:', formData);
+    
 
     // You might want to send raw JSON, not FormData
     const formDataMethod = new FormData();
@@ -148,10 +150,12 @@ export const EditMember = () => {
   };
   const handlecheck = (event) => {
     const { name, value } = event.target;
+    console.log(`Name: ${name}, Value: ${value}`);
+    
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: Number(value), // Update the specific field dynamically and ensure the value is numeric
+      [name]: value, // Update the specific field dynamically and ensure the value is numeric
     }));
   };
   useEffect(() => {

@@ -133,7 +133,7 @@ export const AddMember = () => {
 
     setFormData((prevData) => ({
       ...prevData,
-      [name]: Number(value) // Update the specific field dynamically and ensure the value is numeric
+      [name]: value // Update the specific field dynamically and ensure the value is numeric
     }));
   };
 

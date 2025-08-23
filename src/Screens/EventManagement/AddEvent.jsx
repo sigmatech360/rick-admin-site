@@ -17,6 +17,7 @@ export const AddEvent = () => {
   const [formData, setFormData] = useState({
     image: "", // Initialize image as an empty string
     agenda: [], // Change key name to 'agenda'
+    ticketing_button_text: "Get Your Ticket",
   });
 
   const [selectedItems, setSelectedItems] = useState({});
@@ -350,6 +351,35 @@ export const AddEvent = () => {
                         </div>
                       </div>
 
+                      <div className="col-md-6 mb-4">
+                        <CustomInput
+                          label="Event Ticket Button Text"
+                          // required
+                          id="name"
+                          type="text"
+                          placeholder="Enter Ticket Button Text"
+                          labelClass="mainLabel"
+                          inputClass="mainInput"
+                          name="ticketing_button_text"
+                          value={formData?.ticketing_button_text}
+                          onChange={handleChange}
+                        />
+                      </div>
+                      <div className="col-md-6 mb-4">
+                        <CustomInput
+                          label="Event Brite Link"
+                          // required
+                          id="name"
+                          type="text"
+                          placeholder="Enter Ticket Link"
+                          labelClass="mainLabel"
+                          inputClass="mainInput"
+                          name="ticketing_link"
+                          value={formData?.ticketing_link}
+                          onChange={handleChange}
+                        />
+                      </div>
+
                       <div className="variationData col-md-6">
                         <h5 className="font-weight-bold">Agenda Boxes</h5>
                         {agenda.map((variation, index, agenda) => (
@@ -467,20 +497,7 @@ export const AddEvent = () => {
                         </button>
                       </div>
 
-                      <div className="col-md-6 mb-4">
-                        <CustomInput
-                          label="Event Brite Link"
-                          required
-                          id="name"
-                          type="text"
-                          placeholder="Enter Ticket Link"
-                          labelClass="mainLabel"
-                          inputClass="mainInput"
-                          name="ticketing_link"
-                          value={formData?.ticketing_link}
-                          onChange={handleChange}
-                        />
-                      </div>
+                      
 
                       <div className="col-md-12 mb-4">
                         <div className="inputWrapper">
