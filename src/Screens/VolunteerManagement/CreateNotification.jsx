@@ -240,20 +240,20 @@ export const CreateNotification = () => {
   // ]
 
   const options = [
-    { id: "monday", name: "Monday" },
-    { id: "tuesday", name: "Tuesday" },
-    { id: "wednesday", name: "Wednesday" },
-    { id: "thursday", name: "Thursday" },
-    { id: "friday", name: "Friday" },
-    { id: "saturday", name: "Saturday" },
-    { id: "sunday", name: "Sunday" },
+    { id: "Monday", name: "Monday" },
+    { id: "Tuesday", name: "Tuesday" },
+    { id: "Wednesday", name: "Wednesday" },
+    { id: "Thursday", name: "Thursday" },
+    { id: "Friday", name: "Friday" },
+    { id: "Saturday", name: "Saturday" },
+    { id: "Sunday", name: "Sunday" },
   ];
 
   const availabilityData = [
-    { id: "9:00 AM to 11:00 AM", name: "9:00 AM to 11:00 AM" },
+    { id: "09:00 AM to 11:00 AM", name: "09:00 AM to 11:00 AM" },
     { id: "11:00 AM to 1:00 PM", name: "11:00 AM to 1:00 PM" },
-    { id: "1:00 PM to 3:00 PM", name: "1:00 PM to 3:00 PM" },
-    { id: "3:00 PM to 5:00 PM", name: "3:00 PM to 5:00 PM" },
+    { id: "01:00 PM to 3:00 PM", name: "01:00 PM to 3:00 PM" },
+    { id: "03:00 PM to 5:00 PM", name: "03:00 PM to 5:00 PM" },
   ];
 
   return (
