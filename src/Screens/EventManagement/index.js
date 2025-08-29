@@ -66,6 +66,7 @@ export const EventManagement = () => {
     setInputValue(e.target.value);
   };
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
   const filterData = data?.filter((item) =>
     item?.title.toLowerCase().includes(inputValue.toLowerCase())
   );
@@ -199,7 +200,7 @@ export const EventManagement = () => {
                               <img
                                 src={
                                   item?.image
-                                    ? `${apiUrl}/${item.image}`
+                                    ? `${assetUrl}/${item.image}`
                                     : placeholderimage
                                 }
                                 className="avatarIcon"

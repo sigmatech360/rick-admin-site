@@ -18,6 +18,7 @@ export const AddAnnouncement = () => {
     is_hidden: 0,
   });
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
   const handleChanges = (event) => {
     const { name, value } = event.target;
@@ -218,7 +219,7 @@ export const AddAnnouncement = () => {
                             src={
                               formData?.imageFile?.startsWith("blob:")
                                 ? formData.imageFile
-                                : `${apiUrl}/${formData.image}`
+                                : `${assetUrl}/${formData.image}`
                             }
                             className="img-fluid mt-2"
                             alt="Product"

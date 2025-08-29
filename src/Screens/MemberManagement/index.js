@@ -78,6 +78,7 @@ export const MemberManagement = () => {
   const currentItems = filterData?.slice(indexOfFirstItem, indexOfLastItem);
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
   const Memberlist = () => {
     const LogoutData = localStorage.getItem("login");
     document.querySelector(".loaderBox").classList.remove("d-none");
@@ -199,7 +200,7 @@ export const MemberManagement = () => {
                               <img
                                 src={
                                   item?.image
-                                    ? `${apiUrl}/${item.image}`
+                                    ? `${assetUrl}/${item.image}`
                                     : placeholderimage
                                 }
                                 className="avatarIcon"

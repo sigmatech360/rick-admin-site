@@ -18,6 +18,7 @@ import "./style.css";
 
 const EditProfile = () => {
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
   const navigate = useNavigate();
 
   const [userData, setUserData] = useState({});
@@ -177,7 +178,7 @@ const EditProfile = () => {
                             src={
                               formData?.imageFile?.startsWith("blob:")
                                 ? formData.imageFile
-                                : `${apiUrl}/${formData.image}`
+                                : `${assetUrl}/${formData.image}`
                             }
                             className="img-fluid mt-2"
                             alt="Product"

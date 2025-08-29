@@ -81,6 +81,7 @@ export const VolunteerManagement = () => {
 
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
   const Volunteer = () => {
     const LogoutData = localStorage.getItem('login');
     document.querySelector('.loaderBox').classList.remove("d-none");
@@ -431,7 +432,7 @@ export const VolunteerManagement = () => {
                             <td>{index + 1}</td>
                             <td><img src={
                               item?.image
-                                ? `${apiUrl}/${item.image}`
+                                ? `${assetUrl}/${item.image}`
                                 : placeholderimage
                             } className="avatarIcon" /></td>
                             <td className="text-capitalize">

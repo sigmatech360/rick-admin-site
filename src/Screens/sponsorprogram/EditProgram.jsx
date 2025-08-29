@@ -16,6 +16,8 @@ export const EditsponsorProgram = () => {
   });
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
+  
   const fetchprojectData = () => {
     const LogoutData = localStorage.getItem("login");
     document.querySelector(".loaderBox").classList.remove("d-none");
@@ -254,7 +256,7 @@ export const EditsponsorProgram = () => {
                             src={
                               formData?.imageFile?.startsWith("blob:")
                                 ? formData.imageFile
-                                : `${apiUrl}/${formData.image}`
+                                : `${assetUrl}/${formData.image}`
                             }
                             className="img-fluid mt-2"
                             alt="Product"

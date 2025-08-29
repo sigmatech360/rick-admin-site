@@ -67,6 +67,7 @@ export const UserManagement = () => {
   const currentItems = filterData.slice(indexOfFirstItem, indexOfLastItem);
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
   const UsersList = async () => {
     const LogoutData = localStorage.getItem("login");
@@ -192,7 +193,7 @@ export const UserManagement = () => {
                               <img
                                 src={
                                   item?.image
-                                    ? `${apiUrl}/${item.image}`
+                                    ? `${assetUrl}/${item.image}`
                                     : placeholderimage
                                 }
                                 className="avatarIcon"

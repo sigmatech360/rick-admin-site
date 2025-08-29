@@ -12,6 +12,7 @@ export const ProgramDetail = () => {
   const { id, slug } = useParams();
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
 
   const [data, setData] = useState({});
@@ -92,7 +93,7 @@ export const ProgramDetail = () => {
                       <img
                         src={
                           data?.image
-                            ? `${apiUrl}/${data?.image}`
+                            ? `${assetUrl}/${data?.image}`
                             : placeholderimage
                         }
                       />

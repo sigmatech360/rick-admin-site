@@ -81,6 +81,7 @@ export const AddEvent = () => {
   };
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
   const [editorValue, setEditorValue] = useState(
     RichTextEditor.createEmptyValue()
@@ -288,7 +289,7 @@ export const AddEvent = () => {
                             src={
                               formData?.imageFile?.startsWith("blob:")
                                 ? formData.imageFile
-                                : `${apiUrl}/${formData.image}`
+                                : `${assetUrl}/${formData.image}`
                             }
                             className="img-fluid mt-2"
                             alt="Product"
@@ -469,7 +470,7 @@ export const AddEvent = () => {
                                         <img
                                           src={
                                             item.image
-                                              ? `${apiUrl}/${item.image}`
+                                              ? `${assetUrl}/${item.image}`
                                               : placeholderimage
                                           }
                                           alt="Product"

@@ -36,6 +36,7 @@ export const AddProgram = () => {
     const LogoutData = localStorage.getItem('login');
 
     const apiUrl = process.env.REACT_APP_BASE_URL;
+    const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
 
     const handleSubmit = (event) => {
@@ -201,7 +202,7 @@ export const AddProgram = () => {
                                                         src={
                                                             formData?.imageFile?.startsWith("blob:")
                                                                 ? formData.imageFile
-                                                                : `${apiUrl}/${formData.image}`
+                                                                : `${assetUrl}/${formData.image}`
                                                         }
                                                         className="img-fluid mt-2"
                                                         alt="Product"

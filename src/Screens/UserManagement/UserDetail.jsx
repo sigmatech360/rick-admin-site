@@ -30,6 +30,7 @@ export const UserDetail = () => {
   };
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
   useEffect(() => {
     const LogoutData = localStorage.getItem("login");
@@ -95,7 +96,7 @@ export const UserDetail = () => {
                   <p className="secondaryText">User Profile Image</p>
                   <img
                     src={
-                      user?.image ? `${apiUrl}/${user.image}` : placeholderimage
+                      user?.image ? `${assetUrl}/${user.image}` : placeholderimage
                     }
                     className="w-100"
                   />

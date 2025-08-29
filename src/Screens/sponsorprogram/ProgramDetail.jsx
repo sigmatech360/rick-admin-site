@@ -11,6 +11,7 @@ export const SponsorprogramDetail = () => {
   const { id } = useParams();
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
 
   const [data, setData] = useState({});
@@ -89,7 +90,7 @@ export const SponsorprogramDetail = () => {
                       <img
                         src={
                           data?.image
-                            ? `${apiUrl}/${data?.image}`
+                            ? `${assetUrl}/${data?.image}`
                             : placeholderimage
                         }
                       />

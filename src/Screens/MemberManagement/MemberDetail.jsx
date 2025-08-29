@@ -12,6 +12,7 @@ export const MemberDetail = () => {
 
   // const base_url = 'https://custom.mystagingserver.site/Tim-WDLLC/public/'
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
 
   const [data, setData] = useState({});
@@ -90,7 +91,7 @@ export const MemberDetail = () => {
                       <img
                         src={
                           data?.image
-                            ? `${apiUrl}/${data?.image}`
+                            ? `${assetUrl}/${data?.image}`
                             : placeholderimage
                         }
                       />

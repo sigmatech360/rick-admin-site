@@ -60,6 +60,7 @@ export const EditUser = () => {
   };
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
   const getUserData = () => {
     const LogoutData = localStorage.getItem("login");
@@ -262,7 +263,7 @@ export const EditUser = () => {
                             src={
                               formData?.imageFile?.startsWith("blob:")
                                 ? formData.imageFile
-                                : `${apiUrl}/${formData.image}`
+                                : `${assetUrl}/${formData.image}`
                             }
                             className="img-fluid mt-2"
                             alt="User"

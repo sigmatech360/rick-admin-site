@@ -39,6 +39,7 @@ export const AddUser = () => {
   const navigate = useNavigate();
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
   // const fectchBrandData = () => {
   //     const LogoutData = localStorage.getItem('login');
@@ -287,7 +288,7 @@ export const AddUser = () => {
                             src={
                               formData.imageFile.startsWith("blob:") // Check if it's a new upload
                                 ? formData.imageFile // Preview new image
-                                : `${apiUrl}/${formData.imageFile}` // Show previously uploaded image
+                                : `${assetUrl}/${formData.imageFile}` // Show previously uploaded image
                             }
                             className="img-fluid mt-2"
                             alt="Product"

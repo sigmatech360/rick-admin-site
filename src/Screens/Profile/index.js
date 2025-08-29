@@ -14,6 +14,7 @@ import './style.css'
 const Profile = () => {
 
     const apiUrl = process.env.REACT_APP_BASE_URL;
+    const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
     const navigate = useNavigate()
 
@@ -73,7 +74,7 @@ const Profile = () => {
                                         <div className="profileImage">
                                             <img src={
                                                 userData?.image
-                                                    ? `${apiUrl}/${userData.image}`
+                                                    ? `${assetUrl}/${userData.image}`
                                                     : placeholderimage
                                             } alt="User" />
                                         </div>

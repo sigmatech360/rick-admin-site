@@ -79,6 +79,7 @@ export const BrandManagement = () => {
 
 
   const apiUrl = process.env.REACT_APP_BASE_URL;
+  const assetUrl = process.env.REACT_APP_BASE_ASSET_URL;
 
   const projectlist = () => {
     const LogoutData = localStorage.getItem('login');
@@ -201,7 +202,7 @@ export const BrandManagement = () => {
                             <td>{index + 1}</td>
                             <td><img src={
                               item?.image
-                                ? `${apiUrl}/${item.image}`
+                                ? `${assetUrl}/${item.image}`
                                 : placeholderimage
                             } className="avatarIcon" /></td>
                             {/* <td className="text-capitalize">
