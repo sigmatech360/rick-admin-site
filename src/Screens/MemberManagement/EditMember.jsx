@@ -236,7 +236,7 @@ export const EditMember = () => {
                               type="radio"
                               name="member_type"
                               value="1" // Yes = 1
-                              checked={formData?.member_type == "1"}
+                              checked={formData?.member_type == 1}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -247,7 +247,7 @@ export const EditMember = () => {
                               type="radio"
                               name="member_type"
                               value="2" // No = 0
-                              checked={formData?.member_type == "2"}
+                              checked={formData?.member_type == 2}
                               onChange={handlecheck}
                               className="me-1"
                             />

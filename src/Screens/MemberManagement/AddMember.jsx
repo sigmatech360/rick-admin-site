@@ -131,7 +131,7 @@ export const AddMember = () => {
   const navigate = useNavigate()
   const handlecheck = (event) => {
     const { name, value } = event.target;
-
+    
     setFormData((prevData) => ({
       ...prevData,
       [name]: value // Update the specific field dynamically and ensure the value is numeric
@@ -230,7 +230,7 @@ export const AddMember = () => {
                               required
                               name="member_type"
                               value="1" // Yes = 1
-                              checked={formData?.member_type === 1}
+                              checked={formData?.member_type == 1}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -241,7 +241,7 @@ export const AddMember = () => {
                               type="radio"
                               name="member_type"
                               value="2" // No = 0
-                              checked={formData?.member_type === 2}
+                              checked={formData?.member_type == 2}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -260,7 +260,7 @@ export const AddMember = () => {
                               type="radio"
                               name="show_in_mobile"
                               value="1" // Yes = 1
-                              checked={formData?.show_in_mobile === 1}
+                              checked={formData?.show_in_mobile == 1}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -271,7 +271,7 @@ export const AddMember = () => {
                               type="radio"
                               name="show_in_mobile"
                               value="0" // No = 0
-                              checked={formData?.show_in_mobile === 0}
+                              checked={formData?.show_in_mobile == 0}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -287,7 +287,7 @@ export const AddMember = () => {
                               type="radio"
                               name="show_in_web"
                               value="1" // Yes = 1
-                              checked={formData?.show_in_web === 1}
+                              checked={formData?.show_in_web == 1}
                               onChange={handlecheck}
                               className="me-1"
                             />
@@ -298,7 +298,7 @@ export const AddMember = () => {
                               type="radio"
                               name="show_in_web"
                               value="0" // No = 0
-                              checked={formData?.show_in_web === 0}
+                              checked={formData?.show_in_web == 0}
                               onChange={handlecheck}
                               className="me-1"
                             />
