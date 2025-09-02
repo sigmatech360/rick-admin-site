@@ -281,7 +281,7 @@ SponsorshipManagement = () => {
                                   {/* <Link to={`/edit-sponsorship/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faPencil} className="tableActionIcon" />Edit</Link> */}
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1"
+                                    className="tableAction"
                                     onClick={() => {
                                       handledelete(item?.id);
                                     }}

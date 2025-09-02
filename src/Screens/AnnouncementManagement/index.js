@@ -263,7 +263,7 @@ export const AnnouncementManagement = () => {
                                   {/* <button type="button" className="bg-transparent border-0 ps-lg-3 pt-1" onClick={Deleteannouncement(item?.id)}><FontAwesomeIcon icon={faTrash}></FontAwesomeIcon> Delete</button> */}
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1"
+                                    className="tableAction"
                                     onClick={() => handledelete(item?.id)}
                                   >
                                     <FontAwesomeIcon

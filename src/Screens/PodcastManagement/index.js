@@ -215,7 +215,7 @@ export const PodcastManagement = () => {
                                   <Link to={`/podcast-management/edit-podcast/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEdit} className="tableActionIcon" />Edit</Link>
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1"
+                                    className="tableAction"
                                     onClick={() => {
                                       handledelete(item?.id);
                                     }}

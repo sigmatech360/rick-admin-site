@@ -219,9 +219,11 @@ export const SponsoredProgram = () => {
                                   <FontAwesomeIcon icon={faEllipsisV} />
                                 </Dropdown.Toggle>
                                 <Dropdown.Menu align="end" className="tableDropdownMenu">
+                                  <Link to={`/sponsor-program/program-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
+                                  <Link to={`/sponsor-program/edit-program/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEdit} className="tableActionIcon" />Edit</Link>
                                   <button
                                     type="button"
-                                    className="bg-transparent border-0 ps-lg-3 pt-1"
+                                    className="tableAction"
                                     onClick={() => handledelete(item?.id)}
                                   >
                                     <FontAwesomeIcon
@@ -229,8 +231,6 @@ export const SponsoredProgram = () => {
                                     ></FontAwesomeIcon>{" "}
                                     Delete
                                   </button>
-                                  <Link to={`/sponsor-program/program-details/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEye} className="tableActionIcon" />View</Link>
-                                  <Link to={`/sponsor-program/edit-program/${item?.id}`} className="tableAction"><FontAwesomeIcon icon={faEdit} className="tableActionIcon" />Edit</Link>
 
                                 </Dropdown.Menu>
                               </Dropdown>
