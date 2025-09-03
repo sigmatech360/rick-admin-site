@@ -9,13 +9,14 @@ import { SelectBox } from '../../Components/CustomSelect';
 import CustomButton from '../../Components/CustomButton';
 import CustomModal from '../../Components/CustomModal';
 import moment from 'moment/moment';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { toast } from 'react-toastify';
 
 
 export  const EditStats = () => {
     const { id } = useParams();
     const [data, setData] = useState();
+    const navigate = useNavigate();
     const stats = ()=>{
         const LogoutData = localStorage.getItem('login');
         let url = `${process.env.REACT_APP_BASE_URL}/api/admin/stats/${id}`
@@ -82,6 +83,7 @@ export  const EditStats = () => {
           console.log(data)
           document.querySelector('.loaderBox').classList.add("d-none");
           toast.success(data?.message);
+          navigate(-1)
           // setData(data?.data[0]);
         })
         .catch((error) => {
@@ -125,7 +127,7 @@ export  const EditStats = () => {
                           placeholder="Enter Title"
                           labelClass="mainLabel"
                           inputClass="mainInput"
-                          name='value'
+                          name='title'
                           value={data?.title}
                           onChange={handleChange}
                         />
@@ -155,7 +157,7 @@ export  const EditStats = () => {
                           placeholder="Enter Title"
                           labelClass="mainLabel"
                           inputClass="mainInput"
-                          name='percentage'
+                          name='guide'
                           value={data?.guide}
                           onChange={handleChange}
                         />
@@ -184,7 +186,7 @@ export  const EditStats = () => {
                           placeholder="Enter Title"
                           labelClass="mainLabel"
                           inputClass="mainInput"
-                          name='number'
+                          name='help'
                           value={data?.help}
                           onChange={handleChange}
                         />
